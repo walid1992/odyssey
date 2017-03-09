@@ -1,4 +1,4 @@
-## small 框架
+## small frame
 
 基于small插件化开发的frame框架
 
@@ -25,3 +25,13 @@
 ```
 
 ### release
+
+## 示例图片
+
+1. ![首页app](https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023438.jpg)
+
+2. ![我的app](https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023440.jpg)
+
+3. ![h5 module](https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023445.jpg)
+
+4. ![详情 app](https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023450.jpg)
