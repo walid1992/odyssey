@@ -4,6 +4,9 @@
     {
       "uri": "main",
       "pkg": "com.osmartian.small.app.main"
+    },
+    {
+      "pkg": "com.osmartian.small.lib.style"
     }
   ]
 }
