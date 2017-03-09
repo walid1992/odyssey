@@ -29,4 +29,8 @@ else
   echo "编译业务单元完成"
 fi
 
+./gradlew assembleDebug
+
+adb install app/build/outputs/apk/app-debug.apk
+
 popd
