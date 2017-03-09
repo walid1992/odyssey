@@ -18,6 +18,12 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        rootView.findViewById(R.id.tvH5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Small.openUri("https://github.com/OsMartian/small-frame", getContext());
+            }
+        });
         rootView.findViewById(R.id.tvDetail).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -12,11 +12,23 @@
         android:layout_marginTop="300px"/>
 
     <TextView
+        android:id="@+id/tvH5"
+        android:layout_width="500px"
+        android:layout_height="100px"
+        android:padding="20px"
+        android:text="goto h5 module"
+        android:textSize="40px"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:layout_marginTop="50px"/>
+
+    <TextView
         android:id="@+id/tvDetail"
         android:layout_width="500px"
         android:layout_height="100px"
         android:padding="20px"
-        android:text="goto detail send params"
+        android:text="goto detail module and send params"
         android:textSize="40px"
         android:textColor="@android:color/white"
         android:background="@color/colorPrimary"
@@ -27,7 +39,7 @@
         android:id="@+id/tvSub"
         android:layout_width="500px"
         android:layout_height="100px"
-        android:text="goto sub"
+        android:text="goto detail module sub page"
         android:textSize="40px"
         android:textColor="@android:color/white"
         android:background="@color/colorPrimary"
