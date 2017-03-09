@@ -1,0 +1,11 @@
+<resources>
+    <!-- Test translucent -->
+    <color name="colorDim">#80000000</color>
+
+    <style name="Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+</resources>
