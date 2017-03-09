@@ -1,0 +1,7 @@
+.idea
+.gradle
+*.iml
+build
+*/build
+build-small
+*/smallLibs
