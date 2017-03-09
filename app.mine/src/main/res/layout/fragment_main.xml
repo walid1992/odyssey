@@ -11,27 +11,27 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="300px"
         android:text="I'm Mine Fragment !!!"
-        android:textSize="30px" />
+        android:textSize="60px" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30px"
         android:text="我是王永迪 !!!"
-        android:textSize="30px" />
+        android:textSize="60px" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30px"
         android:text="我是思源科技的一名员工 !!!"
-        android:textSize="30px" />
+        android:textSize="60px" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30px"
         android:text="我是Android开发工程师 !!!"
-        android:textSize="30px" />
+        android:textSize="60px" />
 
 </LinearLayout>

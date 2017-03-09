@@ -3,22 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="20px"
-    android:paddingLeft="20px"
-    android:paddingRight="20px"
-    android:paddingTop="20px"
+    android:padding="50px"
+    android:gravity="center"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tvHello"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World from app.detail!" />
+        android:textColor="@android:color/holo_red_dark"
+        android:text="Welcome to detail module :"
+        android:gravity="center"
+        android:textSize="40px"/>
 
     <TextView
         android:id="@+id/tvFrom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvHello" />
+        android:layout_below="@id/tvHello"
+        android:layout_marginTop="50px"
+        android:textSize="60px"/>
 
 </RelativeLayout>

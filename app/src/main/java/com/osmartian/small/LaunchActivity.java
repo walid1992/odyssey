@@ -21,7 +21,6 @@ public class LaunchActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-
         Small.setUp(this, new Small.OnCompleteListener() {
             @Override
             public void onComplete() {
