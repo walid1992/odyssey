@@ -28,10 +28,18 @@
 
 ## 示例图片
 
-1. <img src="https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023438.jpg" width = "300" alt="首页app" align=center />
+1. 首页app
 
-2. <img src="https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023440.jpg" width = "300" alt="我的app" align=center />
+<img src="https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023438.jpg" width = "300" align=center />
 
-3. <img src="https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023445.jpg" width = "300" alt="h5 module" align=center />
+2. 我的app
 
-4. <img src="https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023450.jpg" width = "300" alt="详情 app" align=center />
+<img src="https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023440.jpg" width = "300" align=center />
+
+3. h5 module
+
+<img src="https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023445.jpg" width = "300" align=center />
+
+4. 详情 app
+
+<img src="https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023450.jpg" width = "300" align=center />
