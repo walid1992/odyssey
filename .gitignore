@@ -1,6 +1,8 @@
 .idea
 .gradle
 node_modules
+output
+npm-debug.log
 *.iml
 android/build
 android/build-small

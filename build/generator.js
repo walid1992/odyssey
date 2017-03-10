@@ -9,16 +9,11 @@ const prompt = require('prompt')
 const fs = require('fs-extra')
 const path = require('path')
 const chalk = require('chalk')
-// const bundleJson = path.relative(path.join('./android/app/src/main/assets'), 'bundle.json')
-const bundlePath = path.relative(path.join('./'), 'bundle.json')
+const bundlePath = path.join('./build/output', 'bundle.json')
+
 let bundleJson = {
   version: '',
   bundles: []
-}
-
-let plugin = {
-  uri: "main",
-  pkg: "com.osmartian.small.app.main"
 }
 
 /**
@@ -26,7 +21,7 @@ let plugin = {
  * @param name
  * @param message
  */
-function getName (name, message) {
+function getName(name, message) {
   return new Promise((resolve, reject) => {
     let schema = {
       properties: {
@@ -43,12 +38,14 @@ function getName (name, message) {
   })
 }
 
-function addPlugin () {
+function addPlugin() {
+  let uri = 'main'
+  let pkg = 'com.osmartian.small.app.main'
   getName('main', chalk.green('please input your plugin uri :')).then(res => {
-    plugin.uri = res.name
+    uri = res.name
     getName('com.osmartian.small.app.main', chalk.green('please input your plugin pkg :')).then(res => {
-      plugin.pkg = res.name
-      bundleJson.bundles.push(plugin)
+      pkg = res.name
+      bundleJson.bundles.push({uri, pkg})
       console.log(bundleJson)
       getName('Y', chalk.green('Continue to add the plugin ?(Y/n)')).then(res => {
         if (res.name.toLowerCase() === 'n') {
@@ -62,7 +59,7 @@ function addPlugin () {
 }
 
 exports.generate = function () {
-  getName('v1.0.0', chalk.green('input your project version :')).then(res => {
+  getName('1.0.0', chalk.green('input your project version :')).then(res => {
     bundleJson.version = res.name
     addPlugin()
   })

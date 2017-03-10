@@ -19,7 +19,10 @@
     },
     {
       "uri": "detail",
-      "pkg": "com.osmartian.small.app.detail"
+      "pkg": "com.osmartian.small.app.detail",
+      "rules": {
+        "sub": "Sub"
+      }
     }
   ]
 }

@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "small frame",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp"
+    "build:plugin": "node build/plugin && npm run copy:bundle && android/buildSmall",
+    "dev:android": "android/runDebug",
+    "copy:bundle": "cp -vf build/output/bundle.json android/app/src/main/assets/bundle.json"
   },
   "engines": {
     "node": ">=6"
