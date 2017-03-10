@@ -12,8 +12,13 @@ const chalk = require('chalk')
 // const bundleJson = path.relative(path.join('./android/app/src/main/assets'), 'bundle.json')
 const bundlePath = path.relative(path.join('./'), 'bundle.json')
 let bundleJson = {
-  'version': '',
-  'bundles': []
+  version: '',
+  bundles: []
+}
+
+let plugin = {
+  uri: "main",
+  pkg: "com.osmartian.small.app.main"
 }
 
 /**
@@ -33,20 +38,25 @@ function getName (name, message) {
     }
     prompt.start()
     prompt.get(schema, (err, result) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve(result)
-      }
+      err ? reject(err) : resolve(result)
     })
   })
 }
 
-function initPlugin () {
+function addPlugin () {
   getName('main', chalk.green('please input your plugin uri :')).then(res => {
-    bundleJson.version = res.name
-    getName('main', chalk.green('please input your plugin pkg :')).then(res => {
-      bundleJson.version = res.name
+    plugin.uri = res.name
+    getName('com.osmartian.small.app.main', chalk.green('please input your plugin pkg :')).then(res => {
+      plugin.pkg = res.name
+      bundleJson.bundles.push(plugin)
+      console.log(bundleJson)
+      getName('Y', chalk.green('Continue to add the plugin ?(Y/n)')).then(res => {
+        if (res.name.toLowerCase() === 'n') {
+          fs.writeFileSync(bundlePath, JSON.stringify(bundleJson))
+          return
+        }
+        addPlugin()
+      })
     })
   })
 }
@@ -54,15 +64,6 @@ function initPlugin () {
 exports.generate = function () {
   getName('v1.0.0', chalk.green('input your project version :')).then(res => {
     bundleJson.version = res.name
-    // let projectName = result.name
-    // const dirpath = path.join(process.cwd(), projectName)
-    // createProject(projectName, dirpath)
-    // let content = fs.readFileSync(filePath, {
-    //   encoding: 'utf-8'
-    // })
-    // content = content.replace(/{{\s*(.+)\s*}}/ig, function (defaultName) {
-    //   return name || defaultName
-    // })
-    // fs.writeFileSync(filePath, content)
+    addPlugin()
   })
 }

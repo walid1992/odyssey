@@ -4,10 +4,9 @@
  * @description 构建插件
  */
 
-const yargs = require('yargs')
-const argv = yargs.argv
-const generator = require('./gen')
+// 获取输入参数
+// const yargs = require('yargs')
+// const argv = yargs.argv
+// require('./gen').generate(argv._[0])
 
-generator.generate()
-
-// generator.generate(argv._[0])
+require('./generator').generate()
