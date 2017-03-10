@@ -4,7 +4,7 @@
 
 ## 插件组合方式
 
-1. 暂不支持
+暂不支持
 
 ## 构建方式
 
@@ -25,6 +25,98 @@
 ```
 
 ### release
+
+暂不支持
+
+## 项目说明
+
+### 项目结构
+
+```
+small-frame
+├── app (宿主app)
+│      ├── LaunchActivity  
+│      │  
+│      └── SmallApp
+│
+├── app.main （宿主app选择加载的主模块）
+│      └── MainActivity
+│
+│
+├── app.home （首页模块app）
+│      └── MainFragment
+│
+│
+├── app.home （首页模块app）
+│      └── MainFragment
+│      
+│          
+├── app.detail （详情模块app）
+│      ├── MainActivity
+│      │   
+│      └── SubActivity
+│           
+└── lib.style （公共样式库）
+       └── res
+           ├── colors.xml
+           ├── dimens.xml
+           └── styles.xml
+       
+    
+```
+
+### 项目配置方式
+
+```
+{
+  "version": "1.0.0",
+  "bundles": [
+    {
+      "uri": "main",
+      "pkg": "com.osmartian.small.app.main"
+    },
+    {
+      "uri": "home",
+      "pkg": "com.osmartian.small.app.home"
+    },
+    {
+      "uri": "mine",
+      "pkg": "com.osmartian.small.app.mine"
+    },
+    {
+      "uri": "lib.style",
+      "pkg": "com.osmartian.small.lib.style"
+    },
+    {
+      "uri": "detail",
+      "pkg": "com.osmartian.small.app.detail",
+      "rules": {
+        "sub": "Sub"
+      }
+    }
+  ]
+}
+```
+
+### 路由跳转管理
+
+1. 跳转h5
+
+```
+  Small.openUri("https://github.com/OsMartian/small-frame", getContext());
+```
+
+2. 跳转app module 传值
+
+```
+  Small.openUri("detail?params=我是参数，从首页传送过来的~", getContext());
+```
+
+3. 跳转app module 二级界面
+
+```
+  Small.openUri("detail/sub", getContext());
+```
 
 ## 示例图片
 
