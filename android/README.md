@@ -35,67 +35,6 @@ small-frame
            └── styles.xml
 ```
 
-## 插件管理
-
-### 插件配置说明
-
-```
-{
-  "version": "1.0.0",
-  "bundles": [
-    {
-      "uri": "main",
-      "pkg": "com.osmartian.small.app.main"
-    },
-    {
-      "uri": "home",
-      "pkg": "com.osmartian.small.app.home"
-    },
-    {
-      "uri": "mine",
-      "pkg": "com.osmartian.small.app.mine"
-    },
-    {
-      "uri": "lib.style",
-      "pkg": "com.osmartian.small.lib.style"
-    },
-    {
-      "uri": "detail",
-      "pkg": "com.osmartian.small.app.detail",
-      "rules": {
-        "sub": "Sub"
-      }
-    }
-  ]
-}
-```
-
-### 插件组合工具
-
-> 暂不支持
-
-## 构建项目
-
-### debug
-
-> 目前支持两种格式打包
-
-1、 打包x86格式so文件
-
-```
-./buildDebug x86 
-```
-
-2、打包armeabi格式so文件
-
-```
-./buildDebug armeabi
-```
-
-### release
-
-> 暂不支持
-
 ## 路由管理
 
 1、 跳转h5
