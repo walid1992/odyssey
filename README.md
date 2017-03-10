@@ -1,6 +1,6 @@
 ## small frame
 
-基于small插件化开发的frame框架
+> 基于small插件化开发的frame框架
 
 ## 插件组合方式
 
@@ -120,18 +120,7 @@ small-frame
 
 ## 示例图片
 
-### 首页app
-
-<img src="https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023438.jpg" width = "300" align=center />
-
-### 我的app
-
-<img src="https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023440.jpg" width = "300" align=center />
-
-### h5 module
-
-<img src="https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023445.jpg" width = "300" align=center />
-
-### 详情 app
-
-<img src="https://github.com/OsMartian/small-frame/blob/master/screenshot/Screenshot_20170310-023450.jpg" width = "300" align=center />
+<img src="/screenshot/Screenshot_20170310-023438.jpg" width = "300" align=center />
+<img src="/screenshot/Screenshot_20170310-023440.jpg" width = "300" align=center />
+<img src="/screenshot/Screenshot_20170310-023445.jpg" width = "300" align=center />
+<img src="/screenshot/Screenshot_20170310-023450.jpg" width = "300" align=center />
