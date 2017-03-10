@@ -100,19 +100,19 @@ small-frame
 
 ### 路由跳转管理
 
-1. 跳转h5
+#### 跳转h5
 
 ```
   Small.openUri("https://github.com/OsMartian/small-frame", getContext());
 ```
 
-2. 跳转app module 传值
+#### 跳转app module 传值
 
 ```
   Small.openUri("detail?params=我是参数，从首页传送过来的~", getContext());
 ```
 
-3. 跳转app module 二级界面
+#### 跳转app module 二级界面
 
 ```
   Small.openUri("detail/sub", getContext());
