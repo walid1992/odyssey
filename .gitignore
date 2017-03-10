@@ -2,6 +2,6 @@
 .gradle
 *.iml
 build
-*/build
 build-small
-*/smallLibs
+smallLibs
+.DS_Store
