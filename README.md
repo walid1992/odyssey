@@ -50,9 +50,13 @@
 1. 采用nodejs进行bundle.json配置文件生成
 2. 执行buildSmall脚本文件编译lib库与app工程
 
+#### 构建指令
+
 ```
 npm run build:plugin
 ```
+
+#### 打包机制
 
 > 目前android支持两种格式打包
 
