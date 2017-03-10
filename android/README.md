@@ -118,7 +118,7 @@ small-frame
 
 ## 示例图片
 
-<img src="/screenshot/Screenshot_20170310-023438.jpg" width = "300" align=center />
-<img src="/screenshot/Screenshot_20170310-023440.jpg" width = "300" align=center />
-<img src="/screenshot/Screenshot_20170310-023445.jpg" width = "300" align=center />
-<img src="/screenshot/Screenshot_20170310-023450.jpg" width = "300" align=center />
+<img src="./screenshot/Screenshot_20170310-023438.jpg" width = "300" align=center />
+<img src="./screenshot/Screenshot_20170310-023440.jpg" width = "300" align=center />
+<img src="./screenshot/Screenshot_20170310-023445.jpg" width = "300" align=center />
+<img src="./screenshot/Screenshot_20170310-023450.jpg" width = "300" align=center />
