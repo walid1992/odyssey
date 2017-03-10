@@ -54,7 +54,7 @@
 npm run build:plugin
 ```
 
-> 目前支持两种格式打包
+> 目前android支持两种格式打包
 
 1、 打包x86格式so文件
 
@@ -70,7 +70,7 @@ cd android
 ./buildSmall armeabi
 ```
 
-构建日志如下,脚本构建分为default脚本（官方推荐插件）与custom脚本（官方市场中插件组成）
+构建日志如下,脚本构建分为default脚本（官方推荐插件）与 custom脚本（官方市场中插件）组成 :
 
 
 ```
@@ -121,7 +121,6 @@ prompt: please input your plugin pkg ::  (com.osmartian.small.app.main)
 编译业务单元完成
 
 ```
-
 
 
 ## 项目启动脚本
