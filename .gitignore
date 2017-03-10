@@ -1,8 +1,9 @@
 .idea
 .gradle
+node_modules
 *.iml
-build
-build-small
-smallLibs
+android/build
+android/build-small
+android/*/smallLibs
+android/local.properties
 .DS_Store
-local.properties
