@@ -4,6 +4,7 @@ node_modules
 output
 npm-debug.log
 *.iml
+assets
 android/build
 android/build-small
 android/*/smallLibs
