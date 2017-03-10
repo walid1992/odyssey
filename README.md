@@ -33,8 +33,6 @@ small-frame
            ├── colors.xml
            ├── dimens.xml
            └── styles.xml
-       
-    
 ```
 
 ## 插件管理
