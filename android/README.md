@@ -1,4 +1,4 @@
-## small frame
+## small frame for android
 
 > 基于small插件化方案实现的动态插件组合、自动打包框架~ 
 
@@ -19,7 +19,7 @@ small-frame
 │      └── MainFragment
 │
 │
-├── app.home （首页模块app）
+├── app.mine （我的模块app）
 │      └── MainFragment
 │      
 │          
