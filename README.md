@@ -2,32 +2,6 @@
 
 > 基于small插件化开发的frame框架
 
-## 插件组合方式
-
-暂不支持
-
-## 构建方式
-
-### debug
-
-目前支持两种格式打包
-
-1. 打包x86格式so文件
-
-```
-./buildDebug x86 
-```
-
-2. 打包armeabi格式so文件
-
-```
-./buildDebug armeabi
-```
-
-### release
-
-暂不支持
-
 ## 项目说明
 
 ### 项目结构
@@ -98,21 +72,47 @@ small-frame
 }
 ```
 
-### 路由跳转管理
+## 插件组合方式
 
-#### 跳转h5
+> 暂不支持
+
+## build
+
+### debug
+
+> 目前支持两种格式打包
+
+1、 打包x86格式so文件
+
+```
+./buildDebug x86 
+```
+
+2、打包armeabi格式so文件
+
+```
+./buildDebug armeabi
+```
+
+### release
+
+> 暂不支持
+
+## 路由跳转管理
+
+1、 跳转h5
 
 ```
   Small.openUri("https://github.com/OsMartian/small-frame", getContext());
 ```
 
-#### 跳转app module 传值
+2、 跳转app module 传值
 
 ```
   Small.openUri("detail?params=我是参数，从首页传送过来的~", getContext());
 ```
 
-#### 跳转app module 二级界面
+3、 跳转app module 二级界面
 
 ```
   Small.openUri("detail/sub", getContext());
