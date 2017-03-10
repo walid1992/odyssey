@@ -8,4 +8,6 @@ const yargs = require('yargs')
 const argv = yargs.argv
 const generator = require('./gen')
 
-generator.generate(argv._[0])
+generator.generate()
+
+// generator.generate(argv._[0])

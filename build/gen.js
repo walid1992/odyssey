@@ -3,110 +3,66 @@
  * @date 2017/3/10
  * @description
  */
+"use strict"
 
-const prompt = require('prompt');
-const fs = require('fs-extra');
-const path = require('path');
-const chalk = require('chalk');
-exports.generate = function (name) {
-  if (typeof(name) == 'undefined') {
-    const dirname = path.resolve('.').split(path.sep).pop();
-    getName(dirname, chalk.green('Generate project in current directory?(Y/n)'), (err, result) => {
-      if (result.name.toLowerCase() === 'n') {
-        return;
-      }
-      const dirpath = process.cwd();
-      let projectName = result.name.toLocaleLowerCase() === 'y' ? dirname : result.name;
-      copy(projectName, dirpath);
-      replace(projectName, dirpath);
-    })
-
-  } else {
-    getName(name, chalk.green('Init your Project'), (err, result) => {
-      if (err) {
-        return;
-      }
-      let projectName = result.name;
-      const dirpath = path.join(process.cwd(), projectName);
-      createProject(projectName, dirpath);
-    })
-  }
-
+const prompt = require('prompt')
+const fs = require('fs-extra')
+const path = require('path')
+const chalk = require('chalk')
+// const bundleJson = path.relative(path.join('./android/app/src/main/assets'), 'bundle.json')
+const bundlePath = path.relative(path.join('./'), 'bundle.json')
+let bundleJson = {
+  'version': '',
+  'bundles': []
 }
 
-function getName (name, message = "Project Name", done) {
-  const schema = {
-    properties: {
-      name: {
-        message: message,
-        default: name
-      }
-    }
-  };
-  prompt.start()
-  prompt.get(schema, done)
-}
-
-// init a project
-function createProject (name, dirpath) {
-  fs.mkdir(dirpath, 484, function (err) {
-    if (err) {
-      if (err.code == 'EEXIST') {
-        return console.log(chalk.red('the folder "' + name + '" exists! Please rename your project.'));
-      } else {
-        console.error(err)
-      }
-    } else {
-      copy(name, dirpath);
-      replace(name, dirpath);
-    }
-  });
-}
-
-function copy (name, dirpath) {
-  const files = []
-  const src = path.join(__dirname, '..', 'vue-template/template')
-  walk(src, files);
-  files.forEach(file => {
-    const relative = path.relative(src, file)
-    const finalPath = path.join(dirpath, relative).replace(/\.npmignore$/, '.gitignore')
-    if (!fs.existsSync(finalPath)) {
-      console.log(chalk.grey(`file: ${finalPath} created.`));
-
-      fs.copySync(file, finalPath)
-    }
-    else {
-      console.log(`file: ${finalPath} already existed.`)
-    }
-  })
-}
-
-function replace (name, dirpath) {
-  const files = ['package.json', 'README.md']
-  files.forEach(file => {
-    let filePath = path.join(dirpath, file);
-    var content = fs.readFileSync(filePath, {
-      encoding: 'utf-8'
-    })
-    content = content.replace(/{{\s*(.+)\s*}}/ig, function (defaultName) {
-      return name || defaultName
-    })
-    fs.writeFileSync(filePath, content)
-  })
-}
 /**
- * ref: http://stackoverflow.com/a/16684530
+ * 获取输入内容
+ * @param name
+ * @param message
  */
-function walk (dir, files) {
-  const list = fs.readdirSync(dir)
-  list.forEach(function (file) {
-    file = path.join(dir, file)
-    const stat = fs.statSync(file)
-    if (stat && stat.isDirectory()) {
-      walk(file, files)
+function getName (name, message) {
+  return new Promise((resolve, reject) => {
+    let schema = {
+      properties: {
+        name: {
+          message: message,
+          default: name
+        }
+      }
     }
-    else {
-      files.push(file)
-    }
+    prompt.start()
+    prompt.get(schema, (err, result) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(result)
+      }
+    })
+  })
+}
+
+function initPlugin () {
+  getName('main', chalk.green('please input your plugin uri :')).then(res => {
+    bundleJson.version = res.name
+    getName('main', chalk.green('please input your plugin pkg :')).then(res => {
+      bundleJson.version = res.name
+    })
+  })
+}
+
+exports.generate = function () {
+  getName('v1.0.0', chalk.green('input your project version :')).then(res => {
+    bundleJson.version = res.name
+    // let projectName = result.name
+    // const dirpath = path.join(process.cwd(), projectName)
+    // createProject(projectName, dirpath)
+    // let content = fs.readFileSync(filePath, {
+    //   encoding: 'utf-8'
+    // })
+    // content = content.replace(/{{\s*(.+)\s*}}/ig, function (defaultName) {
+    //   return name || defaultName
+    // })
+    // fs.writeFileSync(filePath, content)
   })
 }
