@@ -9,7 +9,7 @@
 1. gradle 打包插件机制
 2. 运行期加载机制
 
-### 构建机制
+### 打包插件机制
 
 [官方说明](https://github.com/wequick/Small/tree/master/Android/DevSample/buildSrc)
 
@@ -21,7 +21,7 @@
 
 [官方说明](https://github.com/wequick/Small/wiki/Android-dynamic-load-classes)
 
-> 可以看到，DexClassLoader不支持".so"后缀，为了让应用启动时能自动复制插件包到应用存储目录，需要支持".so"后缀。做法就是模拟 压缩包加载代码块，创建一个dex元素，再反射添加到宿主class loader里的dexPathList。
+> DexClassLoader不支持".so"后缀，为了让应用启动时能自动复制插件包到应用存储目录，需要支持".so"后缀。做法就是模拟 压缩包加载代码块，创建一个dex元素，再反射添加到宿主class loader里的dexPathList。
 
 #### Dynamic load resources
 
