@@ -47,7 +47,8 @@
 
 **2. 封装一个instrumentation，替换掉宿主的**
 
-> 来欺骗startActivityForResult(启动过程1)以获得生命周期，再欺骗performLaunchActivity(启动过程2)来创建插件activity实例
+（1）、欺骗startActivityForResult(启动过程1)以获得生命周期
+（2）、欺骗performLaunchActivity(启动过程2)来创建插件activity实例
 
 ```
 ActivityThread thread = currentActivityThread();
