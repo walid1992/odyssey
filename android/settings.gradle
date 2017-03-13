@@ -1,1 +1,1 @@
-include ':app', ':app.main', ':lib.style', ':app.detail', ':app.home', ':app.mine'
+include ':app', ':app.main', ':lib.style', ':app.detail', ':app.home', ':app.mine', ':app.weex'
