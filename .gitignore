@@ -1,7 +1,7 @@
 .idea
 .gradle
 node_modules
-output
+build/output/*
 npm-debug.log
 *.iml
 android/build
