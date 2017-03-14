@@ -2,6 +2,7 @@
 .gradle
 node_modules
 build/output/*
+bundle.json
 npm-debug.log
 *.iml
 android/build
