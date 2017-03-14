@@ -12,21 +12,6 @@
         android:layout_marginTop="300px"/>
 
     <TextView
-        android:id="@+id/tvWeex"
-        android:layout_width="500px"
-        android:layout_height="wrap_content"
-        android:paddingTop="30px"
-        android:paddingRight="50px"
-        android:paddingBottom="30px"
-        android:paddingLeft="50px"
-        android:text="goto weex module"
-        android:textSize="40px"
-        android:textColor="@android:color/white"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:layout_marginTop="50px"/>
-
-    <TextView
         android:id="@+id/tvH5"
         android:layout_width="500px"
         android:layout_height="wrap_content"

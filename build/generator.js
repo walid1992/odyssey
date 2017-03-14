@@ -11,35 +11,45 @@ const path = require('path')
 const chalk = require('chalk')
 const bundlePath = path.join('./build/output', 'bundle.json')
 
+let applicationId = 'com.osmartian.small'
+
 // TODO 常用插件列表供开发者选择 后续会从网络上读取
 let plugins = [
   {
     "uri": "main",
-    "pkg": "com.osmartian.small.app.main"
+    "pkg": "app.main"
+  },
+  {
+    "uri": "main2",
+    "pkg": "app.main2"
   },
   {
     "uri": "home",
-    "pkg": "com.osmartian.small.app.home"
+    "pkg": "app.home"
   },
   {
     "uri": "mine",
-    "pkg": "com.osmartian.small.app.mine"
-  },
-  {
-    "uri": "lib.style",
-    "pkg": "com.osmartian.small.lib.style"
+    "pkg": "app.mine"
   },
   {
     "uri": "detail",
-    "pkg": "com.osmartian.small.app.detail",
+    "pkg": "app.detail",
     "rules": {
       "sub": "Sub"
     }
+  },
+  {
+    "uri": "lib.weex",
+    "pkg": "lib.weex"
+  },
+  {
+    "uri": "lib.style",
+    "pkg": "lib.style"
   }
 ]
 
 let bundleJson = {
-  version: '',
+  version: '1.0.0',
   bundles: []
 }
 
@@ -53,8 +63,8 @@ function getName(name, message) {
     let schema = {
       properties: {
         name: {
-          message: message,
-          default: name
+          default: name,
+          message: message
         }
       }
     }
@@ -72,14 +82,16 @@ function addDefaultPlugins() {
     getName('Y', chalk.green(`Don't more defaul plugins，do your want add custom plugin ?(Y/n)`)).then(res => {
       if (res.name.toLowerCase() === 'n') {
         fs.writeFileSync(bundlePath, JSON.stringify(bundleJson))
+        chooseHome()
         return
       }
       addCustomPlugin()
     })
     return
   }
-  getName('Y', chalk.green(`Are your sure add ${plugins[index].uri} plugin ?(Y/n)`)).then(res => {
+  getName('Y', chalk.green(`Are your sure add ${applicationId}.${plugins[index].uri} plugin ?(Y/n)`)).then(res => {
     if (res.name.toLowerCase() === 'y') {
+      plugins[index].pkg = `${applicationId}.${plugins[index].pkg}`
       bundleJson.bundles.push(plugins[index])
     }
     index++
@@ -90,15 +102,16 @@ function addDefaultPlugins() {
 function addCustomPlugin() {
   let uri = 'main'
   let pkg = 'com.osmartian.small.app.main'
-  getName('main', chalk.green('please input your plugin uri :')).then(res => {
+  getName('main', chalk.green('please input your plugin uri')).then(res => {
     uri = res.name
-    getName('com.osmartian.small.app.main', chalk.green('please input your plugin pkg :')).then(res => {
+    getName('com.osmartian.small.app.main', chalk.green('please input your plugin pkg')).then(res => {
       pkg = res.name
       bundleJson.bundles.push({uri, pkg})
       console.log(bundleJson)
       getName('Y', chalk.green('Continue to add the plugin ?(Y/n)')).then(res => {
         if (res.name.toLowerCase() === 'n') {
           fs.writeFileSync(bundlePath, JSON.stringify(bundleJson))
+          chooseHome()
           return
         }
         addCustomPlugin()
@@ -107,9 +120,48 @@ function addCustomPlugin() {
   })
 }
 
+function chooseHome() {
+  getName('main', chalk.green('please choose your home uri')).then(res => {
+    if (res.name) {
+      // android 入口配置
+      let androidConfigFile = path.join(__dirname, '../android/app/src/main/java/com/osmartian/small/Config.java')
+      fs.readFile(androidConfigFile, (err, data) => {
+        if (err) {
+          throw err
+        }
+        data = data.toString().replace(/INDEX_URI(.*)"/, `INDEX_URI = "${res.name}"`)
+        fs.writeFile(androidConfigFile, data, function (err) {
+          if (err) {
+            throw err
+          }
+          console.log(data)
+        })
+      })
+    }
+  })
+}
+
 exports.generate = function () {
-  getName('1.0.0', chalk.green('input your project version :')).then(res => {
-    bundleJson.version = res.name
-    addDefaultPlugins()
+  getName(applicationId, chalk.green('please choose your applicationId')).then(res => {
+    if (res.name) {
+      // android 入口配置
+      let androidConfigFile = path.join(__dirname, '../android/app/build.gradle')
+      fs.readFile(androidConfigFile, (err, data) => {
+        if (err) {
+          throw err
+        }
+        data = data.toString().replace(/applicationId(.*)"/, `applicationId "${res.name}"`)
+        fs.writeFile(androidConfigFile, data, (err) => {
+          if (err) {
+            throw err
+          }
+          console.log(data)
+          getName('1.0.0', chalk.green('input your project version')).then(res => {
+            bundleJson.version = res.name
+            addDefaultPlugins()
+          })
+        })
+      })
+    }
   })
 }

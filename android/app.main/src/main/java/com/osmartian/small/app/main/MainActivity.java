@@ -1,7 +1,6 @@
 package com.osmartian.small.app.main;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -72,8 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
             Fragment fragment = Small.createObject("fragment-v4", sUris[position], MainActivity.this);
             if (fragment == null) {
                 fragment = PlaceholderFragment.newInstance(position + 1);
