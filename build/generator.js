@@ -144,13 +144,14 @@ function chooseHome() {
 exports.generate = function () {
   getName(applicationId, chalk.green('please choose your applicationId')).then(res => {
     if (res.name) {
+      // applicationId = res.name
       // android 入口配置
-      let androidConfigFile = path.join(__dirname, '../android/app/build.gradle')
+      let androidConfigFile = path.join(__dirname, '../android/build.gradle')
       fs.readFile(androidConfigFile, (err, data) => {
         if (err) {
           throw err
         }
-        data = data.toString().replace(/applicationId(.*)"/, `applicationId "${res.name}"`)
+        data = data.toString().replace(/applicationId(.*)"/, `applicationId = "${res.name}"`)
         fs.writeFile(androidConfigFile, data, (err) => {
           if (err) {
             throw err

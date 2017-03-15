@@ -8,7 +8,7 @@ package com.osmartian.small.lib.weex.weex.constants;
 
 public class Constants {
 
-    public static final String BaseUrl = "http://192.168.10.122:12580/";
+    public static final String BaseUrl = "http://172.31.241.218:12580/";
     public static final String DefaultPage = "dist/weex/entry.js";
 
     public static final String BUNDLE_URL = "http://h5.m.taobao.com?_wx_tpl=http://g.tbcdn.cn/weex/weex-tc/0.1.2/build/TC__Home.js";
