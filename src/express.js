@@ -9,6 +9,7 @@ let express = require('express')
 let app = express()
 let exec = require('child_process').exec
 
+// 增加body编解码
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
@@ -29,7 +30,7 @@ app.get('*', (req, res) => {
   })
 })
 
-//  POST 请求
+// POST 请求提交表单
 app.post('/v1/submit-form', (req, res) => {
   console.log('收到post请求实体：\n', req.body)
   res.send({
