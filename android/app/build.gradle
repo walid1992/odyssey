@@ -3,17 +3,45 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
+
+    // 签名文件
+    signingConfigs {
+        config {
+            keyAlias 'toon'
+            keyPassword 'Mm5201314'
+            storeFile file('../keystore.jks')
+            storePassword 'Mm5201314'
+        }
+    }
+
     defaultConfig {
-        applicationId rootProject.ext.applicationId
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    // 多渠道/多环境 的不同配置
+    productFlavors {
+        syswin {
+            applicationId rootProject.ext.applicationId
+            // 配置string文件
+            resValue "string", "app_name", rootProject.ext.appName
+            // 配置mainfest文件
+            manifestPlaceholders = [CHANNEL: "syswin", app_icon: "@mipmap/ic_" + rootProject.ext.appIcon]
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.config
+        }
         release {
             minifyEnabled false
+            //移除无用的resource文件
+            shrinkResources true
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

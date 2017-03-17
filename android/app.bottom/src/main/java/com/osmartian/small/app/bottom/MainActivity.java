@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        bindEvent();
-
         Uri uri = Small.getUri(this);
         if (uri != null) {
             String tags = uri.getQueryParameter("tags");
@@ -42,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 tagBeans = gson.fromJson(tags, TagBean[].class);
             }
         }
-
+        bindEvent();
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -56,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void bindEvent() {
+        bottomBar.getTabAtPosition(0).setTitle(tagBeans[0].name);
+        bottomBar.getTabAtPosition(1).setTitle(tagBeans[1].name);
+        bottomBar.getTabAtPosition(2).setTitle(tagBeans[2].name);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {

@@ -35,6 +35,8 @@ function packBase(baseInfo) {
       }
       data = data.toString()
       data = data.replace(/applicationId(.*)\n/, `applicationId = "${baseInfo.applicationId}"\n`)
+      data = data.replace(/appName(.*)\n/, `appName = "${baseInfo.appName || 'toon'}"\n`)
+      data = data.replace(/appIcon(.*)\n/, `appIcon = "${baseInfo.appIcon || 'toon'}"\n`)
       data = data.replace(/versionCode(.*)\n/, `versionCode = ${baseInfo.versionCode || 1}\n`)
       data = data.replace(/versionName(.*)\n/, `versionName = "${baseInfo.versionName || '1.0.0'}"\n`)
       fs.writeFile(androidGradle, data, (err) => {

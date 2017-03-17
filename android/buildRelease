@@ -3,7 +3,7 @@
 THIS_DIR=$(dirname "$0")
 pushd "$THIS_DIR"
 
-./gradlew assembleRelease
+./gradlew assemblesyswinRelease
 
 # adb install app/build/outputs/apk/app-debug.apk
 
