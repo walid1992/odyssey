@@ -1,16 +1,20 @@
 package com.osmartian.small.app.bottom;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.osmartian.small.app.bottom.bean.TagBean;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
@@ -18,11 +22,9 @@ import net.wequick.small.Small;
 
 public class MainActivity extends AppCompatActivity {
 
-    BottomBar bottomBar;
-    ViewPager viewPager;
-
-    private static String[] sUris = new String[]{"home", "mine", "mine"};
-    private static String[] sTitles = new String[]{"首页", "发现", "我的"};
+    private BottomBar bottomBar;
+    private ViewPager viewPager;
+    private TagBean[] tagBeans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         bindEvent();
+
+        Uri uri = Small.getUri(this);
+        if (uri != null) {
+            String tags = uri.getQueryParameter("tags");
+            if (!TextUtils.isEmpty(tags)) {
+                Gson gson = new Gson();
+                tagBeans = gson.fromJson(tags, TagBean[].class);
+            }
+        }
+
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -76,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Fragment fragment = Small.createObject("fragment-v4", sUris[position], MainActivity.this);
+            Fragment fragment = Small.createObject("fragment-v4", tagBeans[position].uri, MainActivity.this);
             if (fragment == null) {
                 fragment = PlaceholderFragment.newInstance(position + 1);
             }
@@ -85,12 +97,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return sTitles.length;
+            return tagBeans.length;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return sTitles[position];
+            return tagBeans[position].name;
         }
     }
 

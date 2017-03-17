@@ -11,15 +11,28 @@
 
 let config = {
   baseInfo: {
-    applicationId: 'com.syswin.toon',
+    applicationId: 'com.syswin.toon.bottom',
     versionCode: 2,
     versionName: '1.0.1',
   },
-  moduleConfig: {
-    indexUri: 'bottom',
-    tagList: {}
+  frame: {
+    uri: 'bottom',
+    tags: [
+      {
+        name: '首页',
+        uri: 'home'
+      },
+      {
+        name: '发现',
+        uri: 'mine'
+      },
+      {
+        name: '我的',
+        uri: 'mine'
+      }
+    ]
   },
-  bundleJson: {
+  modules: {
     version: '1.0.0',
     bundles: [
       {

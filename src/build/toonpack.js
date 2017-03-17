@@ -13,13 +13,14 @@ const chalk = require('chalk')
 const androidPath = path.join(__dirname, '../../android')
 // bundle json
 const bundlePath = path.join(__dirname, '../../build/output', 'bundle.json')
-import packLog from './pack-log.js'
+const logger = require('./logger')
 
 // 打包基本信息
 function packBase(baseInfo) {
+  logger.writeLog('打包基本信息中~')
   return new Promise((resolve, reject) => {
     if (!baseInfo.applicationId) {
-      fs.writeFile(packLog, '请设置applicationId')
+      logger.writeLog('请设置applicationId')
       reject({
         msg: '请设置applicationId'
       })
@@ -38,7 +39,7 @@ function packBase(baseInfo) {
       data = data.replace(/versionName(.*)\n/, `versionName = "${baseInfo.versionName || '1.0.0'}"\n`)
       fs.writeFile(androidGradle, data, (err) => {
         console.log(data)
-        fs.writeFile(packLog, '写入applicationID成功~')
+        logger.writeLog('打包基本信息完毕~')
         err ? reject(err) : resolve()
       })
     })
@@ -46,7 +47,8 @@ function packBase(baseInfo) {
 }
 
 // 框架模块配置
-function packIndex(homeUri) {
+function packFrame(frame) {
+  logger.writeLog('框架模块配置中~')
   return new Promise((resolve, reject) => {
     let androidConfigFile = path.join(androidPath, 'app/src/main/java/com/osmartian/small/Config.java')
     fs.readFile(androidConfigFile, (err, data) => {
@@ -54,52 +56,35 @@ function packIndex(homeUri) {
         reject(err)
         return
       }
-      data = data.toString().replace(/INDEX_URI(.*)\n/, `INDEX_URI = "${homeUri}";\n`)
+      data = data.toString().replace(/INDEX_URI(.*)\n/, `INDEX_URI = "${frame.uri}?tags=${encodeURIComponent(JSON.stringify(frame.tags))}";\n`)
       fs.writeFile(androidConfigFile, data, (err) => {
         console.log(data)
+        logger.writeLog('框架模块配置完毕~')
         err ? reject(err) : resolve()
       })
     })
   })
 }
 
-// 框架模块标签配置
-function packTags(tagList) {
+// 框架模块安装
+function packModules(modules) {
+  console.log(modules)
+  logger.writeLog('模块配置中~')
   return new Promise((resolve, reject) => {
-    resolve()
-    // let androidConfigFile = path.join(androidPath, 'app/src/main/java/com/osmartian/small/Config.java')
-    // fs.readFile(androidConfigFile, (err, data) => {
-    //   if (err) {
-    //     reject(err)
-    //     return
-    //   }
-    //   data = data.toString().replace(/INDEX_URI(.*)\n/, `INDEX_URI = "${baseInfo.homeUri}"\n`)
-    //   fs.writeFile(androidConfigFile, data, (err) => {
-    //     err ? reject(err) : resolve()
-    //   })
-    // })
-  })
-}
-
-// 框架模块标签配置
-function packPlugins(bundleJson) {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(bundlePath, JSON.stringify(bundleJson), (err) => {
-      console.log(bundleJson)
+    fs.writeFile(bundlePath, JSON.stringify(modules), (err) => {
+      logger.writeLog('模块配置完毕~')
       err ? reject(err) : resolve()
     })
   })
 }
 
 exports.generate = function (config) {
+  logger.clear()
   return packBase(config.baseInfo)
     .then(res => {
-      return packIndex(config.moduleConfig.indexUri)
+      return packFrame(config.frame)
     })
     .then(res => {
-      return packTags(config.moduleConfig.tagList)
-    })
-    .then(res => {
-      return packPlugins(config.bundleJson)
+      return packModules(config.modules)
     })
 }

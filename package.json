@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "small frame",
   "scripts": {
-    "build:plugin": "node src/build/plugin && npm run copy:bundle",
+    "build:plugin": "node src/build/plugin && npm run copy:bundle && android/buildSmall",
     "dev:android": "android/runDebug",
     "copy:bundle": "cp -vf build/output/bundle.json android/app/src/main/assets/bundle.json"
   },
@@ -39,6 +39,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.1",
     "gulp-rename": "^1.2.2",
+    "line-reader": "^0.4.0",
     "mysql": "^2.13.0"
   }
 }
