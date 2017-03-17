@@ -8,18 +8,25 @@ let bodyParser = require('body-parser')
 let express = require('express')
 let app = express()
 let childProcess = require('child_process')
+let fs = require("fs");
+let path = require("path")
 
 // 增加body编解码
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
-//  GET 请求
+//  读取日志文件最后一行
 app.get('/v1/get-status', (req, res) => {
-  res.send({
-    data: {},
-    code: 0,
-    message: '正在生成配置文件~'
-  })
+    fs.readFile(path.join('d:', 'test_log.txt'), function (err, data) {
+        if (err) {
+            res.send(err);
+        }
+        res.send({
+            data: {},
+            code: 0,
+            message: data.indexOf("\n") < 0 ? data.toString() : data.toString().substring(data.lastIndexOf("\n") + 1)
+        })
+    });
 })
 
 app.get('*', (req, res) => {
