@@ -10,6 +10,8 @@ let app = express()
 let childProcess = require('child_process')
 let fs = require("fs");
 let path = require("path")
+const logger  = require('../build/logger')
+const toonpack  = require('../build/toonpack')
 
 // 增加body编解码
 app.use(bodyParser.json())
@@ -17,16 +19,13 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 //  读取日志文件最后一行
 app.get('/v1/get-status', (req, res) => {
-    fs.readFile(path.join('d:', 'test_log.txt'), function (err, data) {
-        if (err) {
-            res.send(err);
-        }
-        res.send({
-            data: {},
-            code: 0,
-            message: data.indexOf("\n") < 0 ? data.toString() : data.toString().substring(data.lastIndexOf("\n") + 1)
-        })
-    });
+     logger.readTopLine().then(resp => {
+         res.send({
+             data: {},
+             code: 0,
+             message: resp
+         })
+     })
 })
 
 app.get('*', (req, res) => {
@@ -40,7 +39,14 @@ app.get('*', (req, res) => {
 // POST 请求提交表单
 app.post('/v1/submit-form', (req, res) => {
   console.log('收到post请求实体：\n', req.body)
-  childProcess.exec('./build.sh', function (err, stdout, stderr) {
+  toonpack.generate(req.body).then(resp => {
+      res.send({
+          data: {},
+          code: 0,
+          message: resp
+      })
+  })
+  /*childProcess.exec('./build.sh', function (err, stdout, stderr) {
     if (err) {
       throw err
     }
@@ -50,7 +56,7 @@ app.post('/v1/submit-form', (req, res) => {
       message: '请求成功'
     })
     console.log('stdout', stdout)
-  })
+  })*/
 })
 
 app.post('*', (req, res) => {
