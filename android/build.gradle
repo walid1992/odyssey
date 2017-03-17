@@ -11,12 +11,17 @@ buildscript {
         classpath 'net.wequick.tools.build:gradle-small:1.1.0-alpha2'
         // lambda 表达式
         classpath 'me.tatarka:gradle-retrolambda:3.2.0'
+        // 小刀
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        maven {
+            url "https://jitpack.io"
+        }
     }
 }
 
@@ -29,17 +34,12 @@ small {
     aarVersion = '1.1.0-alpha2'
 }
 
-// 全局gradle配置
-def versionMajor = 1
-def versionMinor = 0
-def versionPatch = 0
-
 ext {
     compileSdkVersion = 25
     buildToolsVersion = '25.0.2'
     applicationId = "com.syswin.toon"
     minSdkVersion = 15
     targetSdkVersion = 25
-    versionCode = versionMajor * 100 + versionMinor * 10 + versionPatch
-    versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
+    versionCode = 2
+    versionName = "1.0.1"
 }

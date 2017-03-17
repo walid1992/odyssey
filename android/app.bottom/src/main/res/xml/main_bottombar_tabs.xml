@@ -1,0 +1,14 @@
+<tabs>
+    <tab
+        icon="@mipmap/ic_home"
+        id="@+id/tab_task"
+        title="首页" />
+    <tab
+        icon="@mipmap/ic_discover"
+        id="@+id/tab_baby"
+        title="发现" />
+    <tab
+        icon="@mipmap/ic_mine"
+        id="@+id/tab_mine"
+        title="我的" />
+</tabs>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MartianCell">
+        <attr name="CommonCell_tv_left_item" format="string" />
+        <attr name="CommonCell_tv_right_item" format="string" />
+    </declare-styleable>
+
+</resources>

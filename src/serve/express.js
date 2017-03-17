@@ -7,24 +7,24 @@
 let bodyParser = require('body-parser')
 let express = require('express')
 let app = express()
-let exec = require('child_process').exec
+let childProcess = require('child_process')
 
 // 增加body编解码
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
 //  GET 请求
-app.get('/get/walid', (req, res) => {
+app.get('/v1/get-status', (req, res) => {
   res.send({
-    data: 'get walid success',
+    data: {},
     code: 0,
-    message: '请求成功'
+    message: '正在生成配置文件~'
   })
 })
 
 app.get('*', (req, res) => {
   res.send({
-    data: 'get success',
+    data: {},
     code: 0,
     message: '请求成功'
   })
@@ -33,12 +33,17 @@ app.get('*', (req, res) => {
 // POST 请求提交表单
 app.post('/v1/submit-form', (req, res) => {
   console.log('收到post请求实体：\n', req.body)
-  res.send({
-    data: 'post walid success',
-    code: 0,
-    message: '请求成功'
+  childProcess.exec('./build.sh', function (err, stdout, stderr) {
+    if (err) {
+      throw err
+    }
+    res.send({
+      data: 'post walid success',
+      code: 0,
+      message: '请求成功'
+    })
+    console.log('stdout', stdout)
   })
-  // require('../build/generator').generate()
 })
 
 app.post('*', (req, res) => {

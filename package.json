@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "small frame",
   "scripts": {
-    "build:plugin": "node build/plugin && npm run copy:bundle && android/buildSmall",
+    "build:plugin": "node src/build/plugin && npm run copy:bundle",
     "dev:android": "android/runDebug",
     "copy:bundle": "cp -vf build/output/bundle.json android/app/src/main/assets/bundle.json"
   },
@@ -34,6 +34,7 @@
     "browserify": "^13.3.0",
     "eslint": "^3.14.0",
     "express": "^4.15.2",
+    "express-generator": "^4.14.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.1",

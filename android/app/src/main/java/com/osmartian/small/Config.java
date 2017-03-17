@@ -6,5 +6,5 @@ package com.osmartian.small;
  * @Describe : INDEX URL配置
  */
 public class Config {
-    public static final String INDEX_URI = "main";
+    public static final String INDEX_URI = "bottom";
 }
