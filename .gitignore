@@ -9,3 +9,4 @@ android/build-small
 android/*/smallLibs
 android/local.properties
 .DS_Store
+/config.js

@@ -7,11 +7,12 @@
 let bodyParser = require('body-parser')
 let express = require('express')
 let app = express()
-let childProcess = require('child_process')
 let fs = require("fs");
 let path = require("path")
-const logger  = require('../build/logger')
-const toonpack  = require('../build/toonpack')
+let toonpack = require('../build/toonpack')
+
+let newestStep = '正在打包操作中~'
+let downUrl
 
 // 增加body编解码
 app.use(bodyParser.json())
@@ -19,51 +20,45 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 //  读取日志文件最后一行
 app.get('/v1/get-status', (req, res) => {
-     logger.readTopLine().then(resp => {
-         res.send({
-             data: {},
-             code: 0,
-             message: resp
-         })
-     })
-})
-
-app.get('*', (req, res) => {
+  if (downUrl) {
+    res.send({
+      data: {
+        url: downUrl
+      },
+      code: 0,
+      msg: newestStep
+    })
+  }
   res.send({
     data: {},
     code: 0,
-    message: '请求成功'
+    msg: newestStep
   })
 })
 
 // POST 请求提交表单
 app.post('/v1/submit-form', (req, res) => {
   console.log('收到post请求实体：\n', req.body)
-  toonpack.generate(req.body).then(resp => {
-      res.send({
-          data: {},
-          code: 0,
-          message: resp
-      })
-  })
-  /*childProcess.exec('./build.sh', function (err, stdout, stderr) {
-    if (err) {
-      throw err
-    }
-    res.send({
-      data: 'post walid success',
-      code: 0,
-      message: '请求成功'
-    })
-    console.log('stdout', stdout)
-  })*/
-})
-
-app.post('*', (req, res) => {
   res.send({
-    data: 'post success',
+    data: {},
     code: 0,
-    message: '请求成功'
+    msg: '数据合法，即将开始打包操作~'
+  })
+  newestStep = ''
+  downUrl = ''
+  let child = require('child_process').fork(`src/build/toonpack.js`)
+  child.on('message', (m) => {
+    console.log(m)
+    if (m.action === 'notice') {
+      newestStep = m.content
+    } else if (m.action === 'success') {
+      downUrl = m.content
+      newestStep = '生成apk成功~'
+    }
+  })
+  child.send({
+    action: 'submitForm',
+    body: req.body
   })
 })
 

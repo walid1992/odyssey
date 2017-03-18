@@ -5,6 +5,6 @@ pushd "$THIS_DIR"
 
 ./gradlew assemblesyswinRelease
 
-# adb install app/build/outputs/apk/app-debug.apk
+# adb install app/build/outputs/apk/app-syswin-release.apk
 
 popd

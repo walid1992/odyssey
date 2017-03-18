@@ -14,10 +14,26 @@ const androidPath = path.join(__dirname, '../../android')
 // bundle json
 const bundlePath = path.join(__dirname, '../../build/output', 'bundle.json')
 const logger = require('./logger')
+const childProcess = require('child_process')
+const ipAddress = require('ip').address()
+
+function sendNotice(content) {
+  process.send({
+    action: 'notice',
+    content: content
+  })
+}
+
+function sendSuccess(content) {
+  process.send({
+    action: 'success',
+    content: content
+  })
+}
 
 // 打包基本信息
 function packBase(baseInfo) {
-  logger.writeLog('打包基本信息中~')
+  sendNotice('打包基本信息中~')
   return new Promise((resolve, reject) => {
     if (!baseInfo.applicationId) {
       logger.writeLog('请设置applicationId')
@@ -41,7 +57,7 @@ function packBase(baseInfo) {
       data = data.replace(/versionName(.*)\n/, `versionName = "${baseInfo.versionName || '1.0.0'}"\n`)
       fs.writeFile(androidGradle, data, (err) => {
         console.log(data)
-        logger.writeLog('打包基本信息完毕~')
+        sendNotice('打包基本信息完毕~')
         err ? reject(err) : resolve()
       })
     })
@@ -50,7 +66,7 @@ function packBase(baseInfo) {
 
 // 框架模块配置
 function packFrame(frame) {
-  logger.writeLog('框架模块配置中~')
+  sendNotice('框架模块配置中~')
   return new Promise((resolve, reject) => {
     let androidConfigFile = path.join(androidPath, 'app/src/main/java/com/osmartian/small/Config.java')
     fs.readFile(androidConfigFile, (err, data) => {
@@ -61,7 +77,7 @@ function packFrame(frame) {
       data = data.toString().replace(/INDEX_URI(.*)\n/, `INDEX_URI = "${frame.uri}?tags=${encodeURIComponent(JSON.stringify(frame.tags))}";\n`)
       fs.writeFile(androidConfigFile, data, (err) => {
         console.log(data)
-        logger.writeLog('框架模块配置完毕~')
+        sendNotice('框架模块配置完毕~')
         err ? reject(err) : resolve()
       })
     })
@@ -71,16 +87,22 @@ function packFrame(frame) {
 // 框架模块安装
 function packModules(modules) {
   console.log(modules)
-  logger.writeLog('模块配置中~')
+  sendNotice('模块配置中~')
   return new Promise((resolve, reject) => {
     fs.writeFile(bundlePath, JSON.stringify(modules), (err) => {
-      logger.writeLog('模块配置完毕~')
+      sendNotice('模块配置完毕~')
       err ? reject(err) : resolve()
     })
   })
 }
 
-exports.generate = function (config) {
+process.on('message', (m) => {
+  if (m.action === 'submitForm') {
+    this.generate(m.body)
+  }
+})
+
+exports.generate = (config) => {
   logger.clear()
   return packBase(config.baseInfo)
     .then(res => {
@@ -88,5 +110,15 @@ exports.generate = function (config) {
     })
     .then(res => {
       return packModules(config.modules)
+    })
+    .then(res => {
+      sendNotice('打包APK中~')
+      childProcess.exec(`${__dirname}/build.sh`, (err, stdout, stderr) => {
+        if (err) {
+          throw err
+        }
+        console.log(stdout)
+        sendSuccess(`http://${ipAddress}:8888/android/app/build/outputs/apk/app-syswin-release.apk`)
+      })
     })
 }

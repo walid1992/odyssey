@@ -13,8 +13,8 @@ let config = {
   baseInfo: {
     applicationId: 'com.syswin.toon.bottom',
     versionCode: 2,
-    appIcon: 'top',
-    appName: '北京通',
+    appIcon: 'toon',
+    appName: 'toon通',
     versionName: '1.0.1',
   },
   frame: {
