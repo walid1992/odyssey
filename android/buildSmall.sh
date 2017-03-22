@@ -24,7 +24,9 @@ then
   echo "编译业务单元完成"
 else
   ./gradlew buildLib -q -Dbundle.arch=armeabi
+  ./gradlew buildLib -q -Dbundle.arch=x86
   echo "编译公共库完成"
+  ./gradlew buildBundle -q -Dbundle.arch=x86
   ./gradlew buildBundle -q -Dbundle.arch=armeabi
   echo "编译业务单元完成"
 fi

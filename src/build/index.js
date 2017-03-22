@@ -4,11 +4,12 @@
  * @description 构建插件
  */
 
-// 获取输入参数
-// const yargs = require('yargs')
-// const argv = yargs.argv
-// require('./gen').generate(argv._[0])
-
+const fs = require('fs-extra')
+const path = require('path')
+// 安卓路径
+const androidPath = path.join(__dirname, '../../android')
+// bundle json
+const bundlePath = path.join(__dirname, '../../build/output', 'bundle.json')
 const ipAddress = require('ip').address()
 
 let config = {
@@ -78,14 +79,72 @@ let config = {
   }
 }
 
-// 进入命令行模式
-// require('./generator').generate()
-
-// 直接打包apk
-require('./toonpack').generate(config)
-  .then(res => {
-    console.log('res' + res)
+// 打包基本信息
+function packBase(baseInfo) {
+  return new Promise((resolve, reject) => {
+    if (!baseInfo.applicationId) {
+      reject({
+        msg: '请设置applicationId'
+      })
+      return
+    }
+    // 初始化applicationId
+    let androidGradle = path.join(androidPath, 'build.gradle')
+    fs.readFile(androidGradle, (err, data) => {
+      if (err) {
+        reject(err)
+        return
+      }
+      data = data.toString()
+      data = data.replace(/applicationId(.*)\n/, `applicationId = "${baseInfo.applicationId}"\n`)
+      data = data.replace(/appName(.*)\n/, `appName = "${baseInfo.appName || 'toon'}"\n`)
+      data = data.replace(/appIcon(.*)\n/, `appIcon = "${baseInfo.appIcon || 'toon'}"\n`)
+      data = data.replace(/versionCode(.*)\n/, `versionCode = ${baseInfo.versionCode || 1}\n`)
+      data = data.replace(/versionName(.*)\n/, `versionName = "${baseInfo.versionName || '1.0.0'}"\n`)
+      fs.writeFile(androidGradle, data, (err) => {
+        console.log(data)
+        console.log('打包基本信息完毕~')
+        err ? reject(err) : resolve()
+      })
+    })
   })
-  .catch(err => {
-    console.log('err' + err)
+}
+
+// 框架模块配置
+function packFrame(frame) {
+  return new Promise((resolve, reject) => {
+    let androidConfigFile = path.join(androidPath, 'app/src/main/java/com/osmartian/small/Config.java')
+    fs.readFile(androidConfigFile, (err, data) => {
+      if (err) {
+        reject(err)
+        return
+      }
+      data = data.toString().replace(/INDEX_URI(.*)\n/, `INDEX_URI = "${frame.uri}?tags=${encodeURIComponent(JSON.stringify(frame.tags))}";\n`)
+      fs.writeFile(androidConfigFile, data, (err) => {
+        console.log(data)
+        err ? reject(err) : resolve()
+      })
+    })
+  })
+}
+
+// 框架模块安装
+function packModules(modules) {
+  console.log(modules)
+  return new Promise((resolve, reject) => {
+    fs.writeFile(bundlePath, JSON.stringify(modules), (err) => {
+      err ? reject(err) : resolve()
+    })
+  })
+}
+
+packBase(config.baseInfo)
+  .then(res => {
+    return packFrame(config.frame)
+  })
+  .then(res => {
+    return packModules(config.modules)
+  })
+  .then(res => {
+    console.log('打包APK中~')
   })

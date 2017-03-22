@@ -18,17 +18,17 @@ const childProcess = require('child_process')
 const ipAddress = require('ip').address()
 
 function sendNotice(content) {
-  // process.send({
-  //   action: 'notice',
-  //   content: content
-  // })
+  process.send({
+    action: 'notice',
+    content: content
+  })
 }
 
 function sendSuccess(content) {
-  // process.send({
-  //   action: 'success',
-  //   content: content
-  // })
+  process.send({
+    action: 'success',
+    content: content
+  })
 }
 
 // 打包基本信息
