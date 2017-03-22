@@ -13,14 +13,14 @@ const ipAddress = require('ip').address()
 
 let config = {
   baseInfo: {
-    applicationId: 'com.syswin.toon.bottom',
+    applicationId: 'com.syswin.toon.top',
     versionCode: 2,
     appIcon: 'toon',
     appName: 'toon通平台',
     versionName: '1.0.1',
   },
   frame: {
-    uri: 'bottom',
+    uri: 'top',
     tags: [
       {
         name: '首页',
@@ -42,6 +42,10 @@ let config = {
       {
         uri: 'bottom',
         pkg: 'com.osmartian.small.app.bottom'
+      },
+      {
+        uri: 'top',
+        pkg: 'com.osmartian.small.app.top'
       },
       {
         uri: 'home',

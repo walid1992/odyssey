@@ -42,7 +42,6 @@ class MineTaskListAdapter extends LoadMoreAdapter<UserTaskItemModel> {
                     String count = String.format(Locale.CHINA, "剩余次数%1$d次", taskInfoVo.getResidueAmount());
                     setText(R.id.tv_residue_degree, count);
                     setText(R.id.tv_task_name, taskInfoVo.getTaskTitle());
-                    setText(R.id.tv_money, String.valueOf(taskInfoVo.getCommission()));
                 }
                 setText(R.id.tv_end_time, DateUtils.convert2yyyy_MM(data.getDisabledTime()));
                 RxBindingUtils.clicks(aVoid -> {

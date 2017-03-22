@@ -35,7 +35,7 @@ small {
 ext {
     compileSdkVersion = 25
     buildToolsVersion = '25.0.2'
-    applicationId = "com.syswin.toon.bottom"
+    applicationId = "com.syswin.toon.top"
     appName = "toon通平台"
     appIcon = "toon"
     minSdkVersion = 15
