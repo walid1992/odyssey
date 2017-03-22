@@ -1,42 +1,54 @@
 package com.osmartian.small.app.home;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 
-import net.wequick.small.Small;
+import com.osmartian.small.app.home.constants.EnumConst;
+import com.osmartian.small.app.home.ui.adapter.FragmentPagerAdapter;
+import com.osmartian.small.lib.martian.mvp.MartianPersenter;
+import com.osmartian.small.lib.martian.ui.widget.navigationbar.INavigationbar;
 
 /**
- * @Author :  walid
- * @Data : 2017-03-09  22:46
- * @Describe : 首页模块fragment
+ * Author   : walid
+ * Data     : 2016-09-07  00:32
+ * Describe :
  */
-public class MainFragment extends Fragment {
+
+@INavigationbar(titleText = "首页")
+public class MainFragment extends BaseFragment {
+
+    TabLayout tabLayout;
+    ViewPager viewPager;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        rootView.findViewById(R.id.tvH5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Small.openUri("https://github.com/OsMartian/small-frame", getContext());
-            }
-        });
-        rootView.findViewById(R.id.tvDetail).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Small.openUri("detail?params=我是参数，从首页传送过来的~", getContext());
-            }
-        });
-        rootView.findViewById(R.id.tvSub).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Small.openUri("detail/sub", getContext());
-            }
-        });
-        return rootView;
+    protected MartianPersenter createPresenter() {
+        return null;
+    }
+
+    @Override
+    protected int getRootLayoutRes() {
+        return R.layout.fragment_mine;
+    }
+
+    @Override
+    protected void initViewsAndEvents() {
+        tabLayout = viewHolder.getView(R.id.tabLayout);
+        viewPager = viewHolder.getView(R.id.viewPager);
+        FragmentPagerAdapter fragmentPagerAdapter = new FragmentPagerAdapter(getChildFragmentManager());
+        fragmentPagerAdapter.addFragment(MineTaskFragment.newInstance(EnumConst.OrderType.ESTATE), "小区");
+        fragmentPagerAdapter.addFragment(MineTaskFragment.newInstance(EnumConst.OrderType.BUILDING), "写字楼");
+        fragmentPagerAdapter.addFragment(MineTaskFragment.newInstance(EnumConst.OrderType.SCHOOL), "学校");
+        fragmentPagerAdapter.addFragment(MineTaskFragment.newInstance(EnumConst.OrderType.SCENIC), "景区");
+        fragmentPagerAdapter.addFragment(MineTaskFragment.newInstance(EnumConst.OrderType.HOUSE), "新房");
+        viewPager.setAdapter(fragmentPagerAdapter);
+        viewPager.setOffscreenPageLimit(4);
+        tabLayout.setupWithViewPager(viewPager);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
 }

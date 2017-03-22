@@ -6,7 +6,7 @@
     "build": "npm run copy:bundle && npm run build:small && npm run build:android",
     "build:small": "android/buildSmall.sh",
     "build:android": "android/buildRelease.sh",
-    "dev:android": "android/runDebug.sh",
+    "dev:android": "android/buildDebug.sh",
     "serve": "node src/utils/ip && serve -p 8888",
     "copy:bundle": "cp -vf build/output/bundle.json android/app/src/main/assets/bundle.json"
   },

@@ -21,12 +21,16 @@ android {
     }
 }
 
+ext {
+    packageId = 0x18
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:recyclerview-v7:24.1.1'
-    compile 'com.android.support:support-v4:25.2.0'
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:design:25.2.0'
+    compile "com.android.support:recyclerview-v7:25.3.0"
+    compile 'com.android.support:support-v4:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support:design:25.3.0'
 
     compile 'com.alibaba:fastjson:1.1.46.android'
     compile 'com.taobao.android:weex_sdk:0.10.0'
@@ -36,19 +40,4 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.3.0'
     compile 'com.squareup.okhttp:okhttp-ws:2.3.0'
     compile 'com.squareup.okio:okio:1.0.1'
-
-    // rxlifecycle
-    compile 'com.trello:rxlifecycle:0.7.0'
-    // If you want to bind to Android-specific lifecycles
-    compile 'com.trello:rxlifecycle-android:0.7.0'
-    // If you want pre-written Activities and Fragments you can subclass as providers
-    compile 'com.trello:rxlifecycle-components:0.7.0'
-
-    // RxBinding start
-    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
-    compile 'com.jakewharton.rxbinding:rxbinding-support-v4:0.4.0'
-    compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.4.0'
-    compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.4.0'
-    compile 'com.jakewharton.rxbinding:rxbinding-design:0.4.0'
-    // RxBinding end
 }

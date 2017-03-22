@@ -8,7 +8,7 @@
 
     <include layout="@layout/layout_navigationbar"/>
 
-    <com.walid.martian.ui.webview.ProgressBarWebView
+    <com.osmartian.small.lib.martian.ui.webview.ProgressBarWebView
         android:id="@+id/webView"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"

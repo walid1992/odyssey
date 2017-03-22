@@ -9,28 +9,30 @@
 // const argv = yargs.argv
 // require('./gen').generate(argv._[0])
 
+const ipAddress = require('ip').address()
+
 let config = {
   baseInfo: {
     applicationId: 'com.syswin.toon.bottom',
     versionCode: 2,
     appIcon: 'toon',
-    appName: 'toon通',
+    appName: 'toon通平台',
     versionName: '1.0.1',
   },
   frame: {
     uri: 'bottom',
     tags: [
       {
-        name: '我的',
-        uri: 'mine'
-      },
-      {
         name: '首页',
         uri: 'home'
       },
       {
-        name: '发现',
-        uri: 'mine'
+        name: '我的',
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/mine/app.js`)}`
+      },
+      {
+        name: '用户资料',
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/userinfo/app.js`)}`
       }
     ]
   },
@@ -46,8 +48,8 @@ let config = {
         pkg: 'com.osmartian.small.app.home'
       },
       {
-        uri: 'mine',
-        pkg: 'com.osmartian.small.app.mine'
+        uri: 'weex',
+        pkg: 'com.osmartian.small.app.weex'
       },
       {
         uri: 'detail',
@@ -59,6 +61,10 @@ let config = {
       {
         uri: 'lib.weex',
         pkg: 'com.osmartian.small.lib.weex'
+      },
+      {
+        uri: 'lib.martian',
+        pkg: 'com.osmartian.small.lib.martian'
       },
       {
         uri: 'lib.style',

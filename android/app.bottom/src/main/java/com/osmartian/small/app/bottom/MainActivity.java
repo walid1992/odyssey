@@ -8,10 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.osmartian.small.app.bottom.bean.TagBean;
@@ -89,10 +86,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
+            Log.d("TAG", tagBeans[position].uri);
             Fragment fragment = Small.createObject("fragment-v4", tagBeans[position].uri, MainActivity.this);
             if (fragment == null) {
                 fragment = PlaceholderFragment.newInstance(position + 1);
             }
+            Bundle bundle = new Bundle();
+            bundle.putString("name", tagBeans[position].name);
+            bundle.putString("uri", tagBeans[position].uri);
+            fragment.setArguments(bundle);
             return fragment;
         }
 
@@ -104,29 +106,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             return tagBeans[position].name;
-        }
-    }
-
-    public static class PlaceholderFragment extends Fragment {
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText("Hello World from section:" + getArguments().getInt(ARG_SECTION_NUMBER));
-            return rootView;
         }
     }
 
