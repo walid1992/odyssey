@@ -108,24 +108,11 @@ prompt: please input your plugin pkg ::  (com.osmartian.small.app.main)
 
 ```
 
-#### 打包机制
-
-> 目前android支持两种格式打包
-
-1、 打包x86格式so文件
+#### 打包指令
 
 ```
-cd android
-./buildSmall x86
+npm run build:small
 ```
-
-2、打包armeabi格式so文件
-
-```
-cd android
-./buildSmall armeabi
-```
-
 
 ## 项目启动脚本
 
@@ -141,12 +128,10 @@ npm run dev:android
 
 ### release
 
-> 暂不支持 （预留指令）
-
 ```
 // android
 npm run build:android
-// ios
+// ios 暂不支持 （预留指令）
 npm run build:ios
 ```
 
