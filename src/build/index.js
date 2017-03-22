@@ -13,14 +13,14 @@ const ipAddress = require('ip').address()
 
 let config = {
   baseInfo: {
-    applicationId: 'com.syswin.toon.top',
+    applicationId: 'com.syswin.toon.bottom',
     versionCode: 2,
     appIcon: 'toon',
     appName: 'toon通平台',
     versionName: '1.0.1',
   },
   frame: {
-    uri: 'top',
+    uri: 'bottom',
     tags: [
       {
         name: '首页',
