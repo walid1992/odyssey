@@ -26,7 +26,7 @@ public class App extends MartianApp {
 
     @Override
     protected void init() {
-        AutoLayoutConifg.getInstance().initConfig(this, 640, 1136);
+        AutoLayoutConifg.getInstance().initConfig(this, 720, 1280);
         initRxJavaRetrofit();
         NavigationbarUtils.sNavigationBarBackgroundColor = Color.parseColor("#1296db");
         NavigationbarUtils.sNavigationBarBackStyle = NavigationbarUtils.BackStyle.WHITH;

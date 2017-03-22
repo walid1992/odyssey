@@ -5,8 +5,10 @@ import android.support.v4.view.ViewPager;
 
 import com.osmartian.small.app.home.constants.EnumConst;
 import com.osmartian.small.app.home.ui.adapter.FragmentPagerAdapter;
+import com.osmartian.small.app.home.ui.page.NearbyFragment;
 import com.osmartian.small.lib.martian.mvp.MartianPersenter;
 import com.osmartian.small.lib.martian.ui.widget.navigationbar.INavigationbar;
+import com.walid.autolayout.utils.AutoUtils;
 
 /**
  * Author   : walid
@@ -35,11 +37,11 @@ public class MainFragment extends BaseFragment {
         tabLayout = viewHolder.getView(R.id.tabLayout);
         viewPager = viewHolder.getView(R.id.viewPager);
         FragmentPagerAdapter fragmentPagerAdapter = new FragmentPagerAdapter(getChildFragmentManager());
-        fragmentPagerAdapter.addFragment(MineTaskFragment.newInstance(EnumConst.OrderType.ESTATE), "小区");
-        fragmentPagerAdapter.addFragment(MineTaskFragment.newInstance(EnumConst.OrderType.BUILDING), "写字楼");
-        fragmentPagerAdapter.addFragment(MineTaskFragment.newInstance(EnumConst.OrderType.SCHOOL), "学校");
-        fragmentPagerAdapter.addFragment(MineTaskFragment.newInstance(EnumConst.OrderType.SCENIC), "景区");
-        fragmentPagerAdapter.addFragment(MineTaskFragment.newInstance(EnumConst.OrderType.HOUSE), "新房");
+        fragmentPagerAdapter.addFragment(NearbyFragment.newInstance(EnumConst.OrderType.ESTATE), "小区");
+        fragmentPagerAdapter.addFragment(NearbyFragment.newInstance(EnumConst.OrderType.BUILDING), "写字楼");
+        fragmentPagerAdapter.addFragment(NearbyFragment.newInstance(EnumConst.OrderType.SCHOOL), "学校");
+        fragmentPagerAdapter.addFragment(NearbyFragment.newInstance(EnumConst.OrderType.SCENIC), "景区");
+        fragmentPagerAdapter.addFragment(NearbyFragment.newInstance(EnumConst.OrderType.HOUSE), "新房");
         viewPager.setAdapter(fragmentPagerAdapter);
         viewPager.setOffscreenPageLimit(4);
         tabLayout.setupWithViewPager(viewPager);

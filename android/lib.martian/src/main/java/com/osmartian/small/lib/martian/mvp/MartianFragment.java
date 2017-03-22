@@ -19,6 +19,7 @@ import com.osmartian.small.lib.martian.utils.eventbus.MartianEvent;
 import com.osmartian.small.lib.martian.utils.rxjava.RxBindingUtils;
 import com.osmartian.small.lib.martian.vh.MartianViewHolder;
 import com.osmartian.small.lib.martian.ui.widget.navigationbar.NavigationBar;
+import com.walid.autolayout.utils.AutoUtils;
 
 import java.lang.annotation.Annotation;
 
@@ -66,6 +67,7 @@ public abstract class MartianFragment<TP extends MartianPersenter> extends RxFra
             rootView = inflater.inflate(getRootLayoutRes(), container, false);
         }
         viewHolder = new MartianViewHolder(rootView);
+        AutoUtils.autoInitParams(rootView);
         return rootView;
     }
 

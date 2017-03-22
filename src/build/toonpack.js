@@ -1,7 +1,7 @@
 /**
  * @author walid
  * @date 2017/3/10
- * @description
+ * @description 打包工具类
  */
 "use strict"
 

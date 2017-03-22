@@ -27,12 +27,12 @@ let config = {
         uri: 'home'
       },
       {
-        name: '我的',
-        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/mine/app.js`)}`
+        name: '动态',
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/tweet/app.js`)}`
       },
       {
-        name: '用户资料',
-        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/userinfo/app.js`)}`
+        name: '我的',
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/mine/app.js`)}`
       }
     ]
   },

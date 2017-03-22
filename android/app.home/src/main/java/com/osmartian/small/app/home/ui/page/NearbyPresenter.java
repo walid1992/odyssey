@@ -1,6 +1,6 @@
-package com.osmartian.small.app.home;
+package com.osmartian.small.app.home.ui.page;
 
-import com.osmartian.small.app.home.bean.server.task.UserTaskItemModel;
+import com.osmartian.small.app.home.bean.server.NearbyBean;
 import com.osmartian.small.lib.martian.mvp.MartianPersenter;
 import com.osmartian.small.lib.martian.utils.ListUtils;
 import com.osmartian.small.lib.martian.utils.rxjava.SimpleSubscriber;
@@ -13,25 +13,25 @@ import java.util.List;
  * Describe :
  */
 
-class MineTaskPresenter extends MartianPersenter<IMineTaskView, MineTaskModel> {
+class NearbyPresenter extends MartianPersenter<INearbyView, NearbyModel> {
 
-    MineTaskPresenter(IMineTaskView view) {
+    NearbyPresenter(INearbyView view) {
         super(view);
     }
 
     @Override
-    protected MineTaskModel createModel() {
-        return new MineTaskModel();
+    protected NearbyModel createModel() {
+        return new NearbyModel();
     }
 
     void loading(int taskType, boolean isFirst) {
-        model.setTaskType(taskType);
+        model.setType(taskType);
         iView.setRefreshing(isFirst);
-        $subScriber(model.userList(0, 10), new SimpleSubscriber<List<UserTaskItemModel>>() {
+        $subScriber(model.nearbys(0, 10), new SimpleSubscriber<List<NearbyBean>>() {
             @Override
-            public void onNext(List<UserTaskItemModel> taskInfoVos) {
+            public void onNext(List<NearbyBean> taskInfoVos) {
                 super.onNext(taskInfoVos);
-                iView.loadingTaskList(taskInfoVos);
+                iView.loadingNearbyList(taskInfoVos);
             }
 
             @Override
@@ -43,16 +43,16 @@ class MineTaskPresenter extends MartianPersenter<IMineTaskView, MineTaskModel> {
     }
 
     void loadMore() {
-        int start = model.getTaskInfoVos().size();
-        $subScriber(model.userList(start, 10), new SimpleSubscriber<List<UserTaskItemModel>>() {
+        int start = model.getNearbyBeans().size();
+        $subScriber(model.nearbys(start, 10), new SimpleSubscriber<List<NearbyBean>>() {
             @Override
-            public void onNext(List<UserTaskItemModel> taskInfoVos) {
+            public void onNext(List<NearbyBean> taskInfoVos) {
                 super.onNext(taskInfoVos);
                 if (ListUtils.isEmpty(taskInfoVos)) {
                     iView.showNoMore();
                     return;
                 }
-                iView.addMoreTaskList(taskInfoVos);
+                iView.addMoreNearbyList(taskInfoVos);
             }
 
             @Override

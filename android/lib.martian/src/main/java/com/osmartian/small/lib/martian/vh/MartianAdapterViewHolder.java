@@ -35,7 +35,7 @@ public class MartianAdapterViewHolder<T> extends BaseViewHolder<T> implements IV
     protected MartianAdapterViewHolder(ViewGroup parent, @LayoutRes int res) {
         super(parent, res);
         mMartianViewHolder = new MartianViewHolder(itemView);
-        AutoUtils.autoLayoutAdjustChildren(itemView);
+        AutoUtils.autoInitParams(itemView);
     }
 
     @Override
