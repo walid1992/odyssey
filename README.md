@@ -100,18 +100,6 @@
 
 ## 指令介绍
 
-* 构建config文件
-
-```
-npm run build:config
-```
-
-* 打包small
-
-```
-npm run build:small
-```
-
 * 项目启动debug
 
 ```
@@ -124,6 +112,8 @@ npm run dev:android
 * 项目构建release
 
 ```
+// android ios平台
+npm run build
 // android
 npm run build:android
 // ios 暂不支持 （预留指令）

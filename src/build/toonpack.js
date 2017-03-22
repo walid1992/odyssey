@@ -113,7 +113,7 @@ exports.generate = (config) => {
     })
     .then(res => {
       sendNotice('打包APK中~')
-      childProcess.exec(`${__dirname}/build.sh`, (err, stdout, stderr) => {
+      childProcess.exec(`${__dirname}/serve.sh`, (err, stdout, stderr) => {
         if (err) {
           throw err
         }

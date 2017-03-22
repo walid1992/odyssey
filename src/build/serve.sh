@@ -4,8 +4,6 @@
 THIS_DIR=$(dirname "$0")
 pushd "$THIS_DIR"
 
-npm run build
-
-# npm run copy:bundle & npm run build:small & npm run build:android
+npm run build:serve
 
 popd
