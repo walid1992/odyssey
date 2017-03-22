@@ -41,7 +41,8 @@ class NearbyListAdapter extends LoadMoreAdapter<NearbyBean> {
                 DecimalFormat df = new DecimalFormat("######0.00");
                 setText(R.id.tv_distance, df.format(data.distance) + "km");
                 RxBindingUtils.clicks(aVoid -> {
-                    Small.openUri("weex?url=" + Uri.encode("http://172.31.242.8:12580/dist/weex/views/mine/app.js"), getContext());
+                    Small.openUri("detail?params=我是参数，从首页传送过来的~", getContext())
+//                    Small.openUri("weex?url=" + Uri.encode("http://172.31.242.8:12580/dist/weex/views/mine/app.js"), getContext());
                 }, itemView);
             }
         };
