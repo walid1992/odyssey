@@ -132,5 +132,5 @@ npm run build:ios
 
 # 框架项目
 
-* [Android](https://github.com/OsMartian/small-frame/tree/dev/android)
-* [iOS](https://github.com/OsMartian/small-frame/tree/dev/ios)
+* [Android](/android)
+* [iOS](/ios)
