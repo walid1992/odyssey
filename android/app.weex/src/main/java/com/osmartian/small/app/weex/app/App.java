@@ -3,9 +3,7 @@ package com.osmartian.small.app.weex.app;
 
 import android.app.Application;
 
-import com.osmartian.small.app.weex.weex.ImageAdapter;
-import com.taobao.weex.InitConfig;
-import com.taobao.weex.WXSDKEngine;
+import com.osmartian.small.lib.weex.app.WeexLibInstance;
 
 /**
  * @Author : Walid
@@ -17,8 +15,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        InitConfig config = new InitConfig.Builder().setImgAdapter(new ImageAdapter()).build();
-        WXSDKEngine.initialize(this, config);
+        WeexLibInstance.getInstance().init(this);
     }
 }
-

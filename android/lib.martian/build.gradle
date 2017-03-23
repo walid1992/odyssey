@@ -1,0 +1,98 @@
+apply plugin: 'com.android.library'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+ext {
+    packageId = 0x11
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "me.tatarka:gradle-retrolambda:3.6.0"
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:25.3.0"
+    compile "com.android.support:recyclerview-v7:25.3.0"
+    compile project(':lib.style')
+    // 前端开发css布局
+    compile 'com.google.android:flexbox:0.2.3'
+    // 屏幕适配库
+    compile 'com.walid:autolayout:1.0.7'
+    // 网络请求库
+    compile 'com.walid:rxretrofit:0.1.1'
+    // easyrecyclerview
+    compile 'com.jude:easyrecyclerview:4.0.6'
+    // banner
+    compile 'com.jude:rollviewpager:1.4.5'
+    // 圆图
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+
+    //数据统计
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    // rxlifecycle
+    compile 'com.trello:rxlifecycle:0.7.0'
+    // If you want to bind to Android-specific lifecycles
+    compile 'com.trello:rxlifecycle-android:0.7.0'
+    // If you want pre-written Activities and Fragments you can subclass as providers
+    compile 'com.trello:rxlifecycle-components:0.7.0'
+
+    // RxBinding start
+    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    compile 'com.jakewharton.rxbinding:rxbinding-support-v4:0.4.0'
+    compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.4.0'
+    compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.4.0'
+    compile 'com.jakewharton.rxbinding:rxbinding-design:0.4.0'
+    // RxBinding end
+
+    // rxpermissions
+    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
+
+    //eventbus
+    compile 'org.greenrobot:eventbus:3.0.0'
+
+    //图片加载
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    compile 'org.apache.commons:commons-lang3:3.4'
+    // json解析
+    compile 'com.google.code.gson:gson:2.7'
+}

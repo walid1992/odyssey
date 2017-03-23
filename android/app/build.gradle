@@ -1,22 +1,57 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    // 签名文件
+    signingConfigs {
+        config {
+            keyAlias 'toon'
+            keyPassword 'Mm5201314'
+            storeFile file('../keystore.jks')
+            storePassword 'Mm5201314'
+        }
+    }
+
     defaultConfig {
-        applicationId "com.osmartian.small"
-        minSdkVersion 15
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    // 多渠道/多环境 的不同配置
+    productFlavors {
+        baidu {
+
+        }
+        syswin {
+            applicationId rootProject.ext.applicationId
+            // 配置string文件
+            resValue "string", "app_name", rootProject.ext.appName
+            // 配置mainfest文件
+            manifestPlaceholders = [CHANNEL: "syswin", app_icon: "@mipmap/ic_" + rootProject.ext.appIcon]
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.config
+        }
         release {
-            minifyEnabled false
+//            minifyEnabled true
+            //移除无用的resource文件
+//            shrinkResources true
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+ext {
+    packageId = 0x10
 }
 
 dependencies {
@@ -24,9 +59,21 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile('com.android.support.constraint:constraint-layout:1.0.2')
-    compile('com.android.support:design:25.2.0')
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:25.3.0'
     compile 'com.taobao.android:weex_sdk:0.10.0'
-    testCompile 'junit:junit:4.12'
+    compile 'com.roughike:bottom-bar:2.1.1'
+    // 前端开发css布局
+    compile 'com.google.android:flexbox:0.2.3'
+    // 屏幕适配库
+    compile 'com.walid:autolayout:1.0.7'
+    // 网络请求库
+    compile 'com.walid:rxretrofit:0.1.1'
+    // easyrecyclerview
+    compile 'com.jude:easyrecyclerview:4.0.6'
+    // banner
+    compile 'com.jude:rollviewpager:1.4.5'
+    // 圆图
+    compile 'de.hdodenhof:circleimageview:2.0.0'
 }

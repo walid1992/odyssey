@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "small frame",
   "scripts": {
-    "build:plugin": "node build/plugin && npm run copy:bundle && android/buildSmall",
-    "dev:android": "android/runDebug",
+    "build": "npm run build:small && android/buildRelease.sh",
+    "build:android": "npm run build:small && android/buildRelease.sh",
+    "build:small": "node src/build/index.js && npm run copy:bundle && android/buildSmall.sh",
+    "build:serve": "npm run copy:bundle && android/buildSmall.sh && android/buildRelease.sh",
+    "dev:android": "npm run build:small && android/buildDebug.sh",
+    "serve": "node src/utils/ip && serve -p 8888",
     "copy:bundle": "cp -vf build/output/bundle.json android/app/src/main/assets/bundle.json"
   },
   "engines": {
@@ -12,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/OsMartian/small-frame.git"
+    "url": "https://github.com/osmartian/small-frame.git"
   },
   "author": "541280314@qq.com",
   "license": "GPL-3.0+",
@@ -30,11 +34,18 @@
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.9",
     "babel-preset-es2015": "^6.18.0",
+    "body-parser": "^1.17.1",
     "browserify": "^13.3.0",
     "eslint": "^3.14.0",
+    "express": "^4.15.2",
+    "express-generator": "^4.14.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.1",
-    "gulp-rename": "^1.2.2"
+    "gulp-rename": "^1.2.2",
+    "ip": "^1.1.5",
+    "line-reader": "^0.4.0",
+    "mysql": "^2.13.0",
+    "serve": "^5.0.3"
   }
 }

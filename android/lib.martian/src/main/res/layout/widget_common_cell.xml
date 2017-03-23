@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_cell"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:minHeight="100px"
+    android:padding="20px">
+
+    <TextView
+        android:id="@+id/tv_left_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="@string/app_name"
+        android:textColor="#333333"
+        android:textSize="32px"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_right_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/tv_right_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/iv_right_arrow"
+            android:layout_toStartOf="@+id/iv_right_arrow"
+            android:textColor="#999999"
+            android:textSize="24px"
+            android:visibility="gone"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_right_item"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/iv_right_arrow"
+            android:layout_toStartOf="@+id/iv_right_arrow"
+            android:visibility="gone"
+            app:civ_border_color="@android:color/white"
+            app:civ_border_width="4px"/>
+
+        <ImageView
+            android:id="@+id/iv_right_arrow"
+            android:layout_width="11px"
+            android:layout_height="22px"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            android:src="@mipmap/ic_right_arrow"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

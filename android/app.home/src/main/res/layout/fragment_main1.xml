@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I'm Home Fragment!!!"
+        android:layout_marginTop="300px"/>
+
+    <TextView
+        android:id="@+id/tvH5"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:paddingTop="30px"
+        android:paddingRight="50px"
+        android:paddingBottom="30px"
+        android:paddingLeft="50px"
+        android:text="goto h5 module"
+        android:textSize="40px"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:layout_marginTop="50px"/>
+
+    <TextView
+        android:id="@+id/tvDetail"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:paddingTop="30px"
+        android:paddingRight="50px"
+        android:paddingBottom="30px"
+        android:paddingLeft="50px"
+        android:text="goto detail module and send params"
+        android:textSize="40px"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:layout_marginTop="50px"/>
+
+    <TextView
+        android:id="@+id/tvSub"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:paddingTop="30px"
+        android:paddingRight="50px"
+        android:paddingBottom="30px"
+        android:paddingLeft="50px"
+        android:text="goto detail module sub page"
+        android:textSize="40px"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:layout_marginTop="50px"/>
+
+</LinearLayout>
