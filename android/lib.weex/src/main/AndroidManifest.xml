@@ -4,7 +4,8 @@
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
 
         <activity android:name=".page.WxIndexActivity">
 
@@ -13,8 +14,7 @@
         <activity
             android:name=".page.WxPageActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="com.taobao.android.intent.action.WEEX" />

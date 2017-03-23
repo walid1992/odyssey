@@ -15,4 +15,3 @@ int color colorPrimary 0x18060001
 int color colorPrimaryDark 0x18060002
 int id activity_network 0x18070000
 int id container 0x18070001
-int id toolbar 0x18070002

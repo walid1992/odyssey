@@ -12,14 +12,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -42,7 +38,6 @@ import com.taobao.weex.ui.component.NestedContainer;
 import com.taobao.weex.utils.WXFileUtils;
 import com.taobao.weex.utils.WXLogUtils;
 
-import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -133,13 +128,6 @@ public class WxPageActivity extends WXBaseActivity implements Handler.Callback, 
     }
 
     private void initUIAndData() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(mUri.toString().substring(mUri.toString().lastIndexOf(File.separator) + 1));
-
         mContainer = (ViewGroup) findViewById(R.id.container);
         mProgressBar = (ProgressBar) findViewById(R.id.progress);
         mWXHandler = new Handler(this);
@@ -372,33 +360,6 @@ public class WxPageActivity extends WXBaseActivity implements Handler.Callback, 
                 .setMessage(errMsg)
                 .setPositiveButton("OK", null)
                 .show();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-//        if (!TextUtils.equals("file", mUri.getScheme())) {
-//            getMenuInflater().inflate(R.menu.refresh, menu);
-//        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            finish();
-            return true;
-        }
-//        else if (id == R.id.action_refresh) {
-//            String scheme = mUri.getScheme();
-//            if (mUri.isHierarchical() && (TextUtils.equals(scheme, "http") || TextUtils.equals(scheme, "https"))) {
-//                String weexTpl = mUri.getQueryParameter(Constants.WEEX_TPL_KEY);
-//                String url = TextUtils.isEmpty(weexTpl) ? mUri.toString() : weexTpl;
-//                loadWXfromService(url);
-//                return true;
-//            }
-//        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

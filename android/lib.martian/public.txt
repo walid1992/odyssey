@@ -13,6 +13,9 @@ int layout widget_common_cell 0x11030005
 int dimen design_navigation_padding_top_default 0x11040000
 int dimen design_fab_content_size 0x11040001
 int color design_textinput_error_color 0x11050000
+int color colorAccent 0x11050001
+int color colorPrimary 0x11050002
+int color colorPrimaryDark 0x11050003
 int id webView 0x11060000
 int id navigationbar 0x11060001
 int id rl_cell 0x11060002
@@ -21,3 +24,5 @@ int id rl_right_item 0x11060004
 int id tv_right_item 0x11060005
 int id iv_right_arrow 0x11060006
 int id iv_right_item 0x11060007
+int style AppTheme 0x11070000
+int style AppTheme_NoActionBar 0x11070001

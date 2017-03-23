@@ -18,7 +18,7 @@ let config = {
     versionCode: 2,
     appIcon: 'toon',
     appName: 'toon通平台',
-    versionName: '1.0.1',
+    versionName: '1.0.1'
   },
   frame: {
     uri: 'bottom',
