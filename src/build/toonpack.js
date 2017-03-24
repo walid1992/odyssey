@@ -74,7 +74,8 @@ function packFrame(frame) {
         reject(err)
         return
       }
-      data = data.toString().replace(/INDEX_URI(.*)\n/, `INDEX_URI = "${frame.uri}?tags=${encodeURIComponent(JSON.stringify(frame.tags))}";\n`)
+      let uri = frame.tags && frame.tags.length > 0 ? `${frame.uri}?tags=${encodeURIComponent(JSON.stringify(frame.tags))}` : frame.uri
+      data = data.toString().replace(/INDEX_URI(.*)\n/, `INDEX_URI = "${uri}";\n`)
       fs.writeFile(androidConfigFile, data, (err) => {
         console.log(data)
         sendNotice('框架模块配置完毕~')
