@@ -336,7 +336,7 @@ npm run build:android
 <img src="./screenshot/top-launch.jpg" width = "300" align=center />
 <img src="./screenshot/top-mine.jpg" width = "300" align=center />
 
-### 打包topbar框架APK
+### 打包bottom框架APK
 
 * config 文件配置
 
