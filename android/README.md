@@ -408,6 +408,6 @@ npm run build:android
 
 ### 示例图片
 
-<img src="./screenshot/hottom-native-home.jpg" width = "300" align=center />
-<img src="./screenshot/hottom-weex-home.jpg" width = "300" align=center />
+<img src="./screenshot/bottom-native-home.jpg" width = "300" align=center />
+<img src="./screenshot/bottom-weex-home.jpg" width = "300" align=center />
 <img src="./screenshot/bottom-mine.jpg" width = "300" align=center />
