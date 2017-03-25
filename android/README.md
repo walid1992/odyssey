@@ -1,10 +1,10 @@
 ## small frame for android
 
-> 基于small插件化方案实现的动态插件组合、自动打包框架~ 
+> 基于small插件化方案实现的定制化APP组装、打包框架~
 
 ## 原理介绍
 
-> small 插件化方案分为两个步骤
+> small 插件化方案android端分为两个步骤
 
 1. gradle 打包插件机制
 2. 运行期加载机制
@@ -82,22 +82,31 @@ small-frame
 │      │  
 │      └── SmallApp
 │
-├── app.main （宿主app选择加载的主模块）
-│      └── MainActivity
-│
+├── app.top (topbar框架APP)
+│      │ 
+│      └── MainActivity  
+│              
+├── app.bottom (bottombar框架app)
+│      │
+│      └── MainActivity  
 │
 ├── app.home （首页模块app）
 │      └── MainFragment
 │
-│
-├── app.mine （我的模块app）
+├── app.weex （weex模块app）
+│      │ 
+│      ├── MainActivity  
+│      │
 │      └── MainFragment
-│      
-│          
+│         
 ├── app.detail （详情模块app）
 │      ├── MainActivity
 │      │   
 │      └── SubActivity
+│
+├── lib.weex （weex lib 库）
+│
+├── lib.martian （公共工具库）
 │           
 └── lib.style （公共样式库）
        └── res
@@ -106,12 +115,174 @@ small-frame
            └── styles.xml
 ```
 
-## 路由管理
+## config驱动文件打包APK流程
+
+
+### 打包配置说明 
+
+```
+{
+  baseInfo: {
+    applicationId: 'com.syswin.toon.bottom',
+    versionCode: 2,
+    appIcon: 'toon',
+    appName: 'toon通平台',
+    versionName: '1.0.1'
+  },
+  frame: {
+    uri: 'bottom',
+    tags: [
+      {
+        name: '首页',
+        uri: 'home'
+      },
+      {
+        name: '动态',
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/tweet/app.js`)}`
+      },
+      {
+        name: '我的',
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/mine/app.js`)}`
+      }
+    ]
+  },
+  modules: {
+    version: '1.0.0',
+    bundles: [
+      {
+        uri: 'bottom',
+        pkg: 'com.osmartian.small.app.bottom'
+      },
+      {
+        uri: 'top',
+        pkg: 'com.osmartian.small.app.top'
+      },
+      {
+        uri: 'home',
+        pkg: 'com.osmartian.small.app.home'
+      },
+      {
+        uri: 'weex',
+        pkg: 'com.osmartian.small.app.weex'
+      },
+      {
+        uri: 'detail',
+        pkg: 'com.osmartian.small.app.detail',
+        rules: {
+          sub: 'Sub'
+        }
+      },
+      {
+        uri: 'lib.weex',
+        pkg: 'com.osmartian.small.lib.weex'
+      },
+      {
+        uri: 'lib.martian',
+        pkg: 'com.osmartian.small.lib.martian'
+      },
+      {
+        uri: 'lib.style',
+        pkg: 'com.osmartian.small.lib.style'
+      }
+    ]
+  }
+}
+```
+
+### APK生成过程
+
+1. 动态修改APP基本信息
+
+采用动态修改gradle配置方式，修改AppID、appName、appIcon...
+
+在项目根build.gradle中有如下配置，只需动态修改此配置即可：
+
+```
+ext {
+    compileSdkVersion = 25
+    buildToolsVersion = '25.0.2'
+    applicationId = "com.syswin.toon.walid"
+    appName = "Walid APK"
+    appIcon = "top"
+    minSdkVersion = 15
+    targetSdkVersion = 25
+    versionCode = 10
+    versionName = "1.0.1"
+}
+
+```
+
+2. 设置框架frame模块
+
+动态设置框架模块uri，用于宿主模块调起
+
+见宿主app模块下com.osmartian.small中的config.java文件：
+
+```
+package com.osmartian.small;
+
+/**
+ * @Author : walid
+ * @Data : 2017-03-14  22:36
+ * @Describe : INDEX URL配置
+ */
+public class Config {
+    public static final String INDEX_URI = "bottom?tags=%5B%7B%22name%22%3A%22%E9%A6%96%E9%A1%B5%22%2C%22uri%22%3A%22home%22%7D%2C%7B%22name%22%3A%22%E6%88%91%E7%9A%84%22%2C%22uri%22%3A%22weex%3Furl%3Dhttp%253A%252F%252F172.31.243.44%253A12580%252Fdist%252Fweex%252Fviews%252Fmine%252Fapp.js%22%7D%2C%7B%22name%22%3A%22%E4%B8%AA%E4%BA%BA%E8%B5%84%E6%96%99%22%2C%22uri%22%3A%22weex%3Furl%3Dhttp%253A%252F%252F172.31.243.44%253A12580%252Fdist%252Fweex%252Fviews%252Fuserinfo%252Fapp.js%22%7D%5D";
+}
+
+```
+
+3. 生成bundle.json small打包需要文件
+
+动态生成bundle.json small打包文件，且copy到android、ios项目
+
+(1)、生成bundle.json文件
+
+```
+const bundlePath = path.join(__dirname, '../../build/output', 'bundle.json')
+
+// 框架模块安装
+function packModules(modules) {
+  console.log(modules)
+  return new Promise((resolve, reject) => {
+    fs.writeFile(bundlePath, JSON.stringify(modules), (err) => {
+      err ? reject(err) : resolve()
+    })
+  })
+}
+```
+
+(2)、copy 至 android 、 ios项目
+
+```
+// cp -vf build/output/bundle.json android/app/src/main/assets/bundle.json
+npm run copy:bundle
+```
+
+4. 执行small打包 -> so 文件
+
+将需要打包的模块打包成so文件
+
+```
+npm run build:small
+```
+
+5. 编译生成apk文件
+
+执行npm指令进行apk生成
+
+```
+npm run dev:android 
+// 或 
+npm run build:android
+```
+
+## small 模块跳转操作
 
 1、 跳转h5
 
 ```
-  Small.openUri("https://github.com/OsMartian/small-frame", getContext());
+  Small.openUri("https://github.com/osmartian/small-frame", getContext());
 ```
 
 2、 跳转app module 传值

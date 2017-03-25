@@ -35,8 +35,8 @@ small {
 ext {
     compileSdkVersion = 25
     buildToolsVersion = '25.0.2'
-    applicationId = "com.syswin.toon.yufeng"
-    appName = "宇峰APK"
+    applicationId = "com.syswin.toon.walid"
+    appName = "Walid APK"
     appIcon = "top"
     minSdkVersion = 15
     targetSdkVersion = 25
