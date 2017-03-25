@@ -122,6 +122,7 @@ small-frame
 
 ```
 {
+  // app基本信息配置
   baseInfo: {
     applicationId: 'com.syswin.toon.bottom',
     versionCode: 2,
@@ -129,57 +130,24 @@ small-frame
     appName: 'BOTTOM框架',
     versionName: '1.0.1'
   },
+  // 框架末班配置
   frame: {
+    // 框架模块uri
     uri: 'bottom',
-    tags: [
-      {
-        name: 'Weex首页',
-        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/home/app.js`)}`
-      },
-      {
-        name: '原生首页',
-        uri: `home`
-      },
-      {
-        name: '我的',
-        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/mine/app.js`)}`
-      }
-    ]
+    // 可选
+    tags: []
   },
+  // 配置small打包配置
   modules: {
+    // small 版本
     version: '1.0.0',
+    // 需要打包的app及lib
     bundles: [
       {
         uri: 'bottom',
         pkg: 'com.osmartian.small.app.bottom'
       },
-      {
-        uri: 'top',
-        pkg: 'com.osmartian.small.app.top'
-      },
-      {
-        uri: 'home',
-        pkg: 'com.osmartian.small.app.home'
-      },
-      {
-        uri: 'weex',
-        pkg: 'com.osmartian.small.app.weex'
-      },
-      {
-        uri: 'detail',
-        pkg: 'com.osmartian.small.app.detail',
-        rules: {
-          sub: 'Sub'
-        }
-      },
-      {
-        uri: 'lib.weex',
-        pkg: 'com.osmartian.small.lib.weex'
-      },
-      {
-        uri: 'lib.martian',
-        pkg: 'com.osmartian.small.lib.martian'
-      },
+      ... 
       {
         uri: 'lib.style',
         pkg: 'com.osmartian.small.lib.style'
@@ -297,9 +265,149 @@ npm run build:android
   Small.openUri("detail/sub", getContext());
 ```
 
-## 示例图片
+## 项目打包APK示例
 
-<img src="./screenshot/Screenshot_20170310-023438.jpg" width = "300" align=center />
-<img src="./screenshot/Screenshot_20170310-023440.jpg" width = "300" align=center />
-<img src="./screenshot/Screenshot_20170310-023445.jpg" width = "300" align=center />
-<img src="./screenshot/Screenshot_20170310-023450.jpg" width = "300" align=center />
+### 打包topbar框架APK
+
+* config 文件配置
+
+```
+{
+  baseInfo: {
+    applicationId: 'com.syswin.toon.top',
+    versionCode: 2,
+    appIcon: 'top',
+    appName: 'TOP框架',
+    versionName: '1.0.1'
+  },
+  frame: {
+    uri: 'top',
+    tags: [
+      {
+        name: '首页',
+        uri: 'home'
+      },
+      {
+        name: '发起筹款',
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/launch/app.js`)}`
+      },
+      {
+        name: '我的',
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/mine/app.js`)}`
+      }
+    ]
+  },
+  modules: {
+    version: '1.0.0',
+    bundles: [
+      {
+        uri: 'top',
+        pkg: 'com.osmartian.small.app.top'
+      },
+      {
+        uri: 'home',
+        pkg: 'com.osmartian.small.app.home'
+      },
+      {
+        uri: 'weex',
+        pkg: 'com.osmartian.small.app.weex'
+      },
+      {
+        uri: 'lib.weex',
+        pkg: 'com.osmartian.small.lib.weex'
+      },
+      {
+        uri: 'lib.martian',
+        pkg: 'com.osmartian.small.lib.martian'
+      },
+      {
+        uri: 'lib.style',
+        pkg: 'com.osmartian.small.lib.style'
+      }
+    ]
+  }
+}
+
+```
+
+### 示例图片
+
+<img src="./screenshot/top-home.jpg" width = "300" align=center />
+<img src="./screenshot/top-launch.jpg" width = "300" align=center />
+<img src="./screenshot/top-mine.jpg" width = "300" align=center />
+
+### 打包topbar框架APK
+
+* config 文件配置
+
+```
+{
+  baseInfo: {
+    applicationId: 'com.syswin.toon.bottom',
+    versionCode: 2,
+    appIcon: 'bottom',
+    appName: 'BOTTOM框架',
+    versionName: '1.0.1'
+  },
+  frame: {
+    uri: 'bottom',
+    tags: [
+      {
+        name: 'Weex首页',
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/home/app.js`)}`
+      },
+      {
+        name: '原生首页',
+        uri: `home`
+      },
+      {
+        name: '我的',
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/mine/app.js`)}`
+      }
+    ]
+  },
+  modules: {
+    version: '1.0.0',
+    bundles: [
+      {
+        uri: 'bottom',
+        pkg: 'com.osmartian.small.app.bottom'
+      },
+      {
+        uri: 'home',
+        pkg: 'com.osmartian.small.app.home'
+      },
+      {
+        uri: 'weex',
+        pkg: 'com.osmartian.small.app.weex'
+      },
+      {
+        uri: 'detail',
+        pkg: 'com.osmartian.small.app.detail',
+        rules: {
+          sub: 'Sub'
+        }
+      },
+      {
+        uri: 'lib.weex',
+        pkg: 'com.osmartian.small.lib.weex'
+      },
+      {
+        uri: 'lib.martian',
+        pkg: 'com.osmartian.small.lib.martian'
+      },
+      {
+        uri: 'lib.style',
+        pkg: 'com.osmartian.small.lib.style'
+      }
+    ]
+  }
+}
+
+```
+
+### 示例图片
+
+<img src="./screenshot/bottom-mine.jpg" width = "300" align=center />
+<img src="./screenshot/hottom-native-home.jpg" width = "300" align=center />
+<img src="./screenshot/hottom-weex-home.jpg" width = "300" align=center />
