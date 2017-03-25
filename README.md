@@ -18,8 +18,8 @@
 
 # 框架获取
 
-1. git clone https://github.com/osmartian/small-frame.git
-2. cd small-frame
+1. git clone https://github.com/osmartian/odyssey.git
+2. cd odyssey
 3. npm install
 
 ## 指令介绍
