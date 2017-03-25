@@ -16,20 +16,20 @@ let config = {
   baseInfo: {
     applicationId: 'com.syswin.toon.bottom',
     versionCode: 2,
-    appIcon: 'toon',
-    appName: 'toon通平台',
+    appIcon: 'bottom',
+    appName: 'BOTTOM框架',
     versionName: '1.0.1'
   },
   frame: {
     uri: 'bottom',
     tags: [
       {
-        name: '首页',
-        uri: 'home'
+        name: 'Weex首页',
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/home/app.js`)}`
       },
       {
-        name: '动态',
-        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/tweet/app.js`)}`
+        name: '原生首页',
+        uri: `home`
       },
       {
         name: '我的',
