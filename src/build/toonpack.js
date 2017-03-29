@@ -116,10 +116,12 @@ exports.generate = (config) => {
     .then(res => {
       sendNotice('打包APK中~')
       pack.stdout.on('data',(data) =>{
+        sendNotice(`${data}`)
         console.log(chalk.green(`${data}`))
       })
 
       pack.stderr.on('data', (data) => {
+        sendNotice(`${data}`)
         console.log(chalk.red(`${data}`));
       });
 
