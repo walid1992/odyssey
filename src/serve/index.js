@@ -39,6 +39,17 @@ app.get('/v1/get-status', (req, res) => {
 // POST 请求提交表单
 app.post('/v1/submit-form', (req, res) => {
   console.log('收到post请求实体：\n', req.body)
+  let applicationId = req.body.baseInfo.applicationId
+  //校验 applicationId 不能少于3级
+  let regex = new RegExp(/(\w+\.){2,}\w+/)
+  if(!regex.test(applicationId)){
+    res.send({
+      data: {},
+      code: -1,
+      msg: 'applicationId不合法，退出~'
+    })
+    return
+  }
   res.send({
     data: {},
     code: 0,
