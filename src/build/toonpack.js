@@ -14,7 +14,8 @@ const androidPath = path.join(__dirname, '../../android')
 // bundle json
 const bundlePath = path.join(__dirname, '../../build/output', 'bundle.json')
 const logger = require('./logger')
-const childProcess = require('child_process')
+const spawn = require('child_process').spawn
+const pack = spawn(`${__dirname}/serve.sh`)
 const ipAddress = require('ip').address()
 
 function sendNotice(content) {
@@ -114,12 +115,18 @@ exports.generate = (config) => {
     })
     .then(res => {
       sendNotice('打包APK中~')
-      childProcess.exec(`${__dirname}/serve.sh`, (err, stdout, stderr) => {
-        if (err) {
-          throw err
-        }
-        console.log(stdout)
-        sendSuccess(`http://${ipAddress}:8888/android/app/build/outputs/apk/app-syswin-release.apk`)
+      pack.stdout.on('data',(data) =>{
+        console.log(chalk.green(`${data}`))
       })
+
+      pack.stderr.on('data', (data) => {
+        console.log(chalk.red(`${data}`));
+      });
+
+      pack.on('close', (code) => {
+        console.log(`child process exited with code ${code}`);
+        sendSuccess(`http://${ipAddress}:8888/android/app/build/outputs/apk/app-syswin-release.apk`)
+      });
+
     })
 }
