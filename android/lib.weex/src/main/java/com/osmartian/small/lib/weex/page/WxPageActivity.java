@@ -16,6 +16,7 @@ import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -91,7 +92,9 @@ public class WxPageActivity extends WXBaseActivity implements Handler.Callback, 
         } else {
             mConfigMap.put("bundleUrl", mUri.toString() + Constants.WEEX_SAMPLES_KEY);
         }
-
+        Log.i(TAG, "mUri == " + mUri);
+        setTitle(mUri.getQueryParameter("title"));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (mUri == null) {
             Toast.makeText(this, "the uri is empty!", Toast.LENGTH_SHORT).show();
             finish();
@@ -241,6 +244,17 @@ public class WxPageActivity extends WXBaseActivity implements Handler.Callback, 
         if (mWxAnalyzerDelegate != null) {
             mWxAnalyzerDelegate.onResume();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

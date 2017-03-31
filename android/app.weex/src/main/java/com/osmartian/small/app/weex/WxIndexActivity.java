@@ -43,6 +43,9 @@ public class WxIndexActivity extends WXBaseActivity {
         if (TextUtils.isEmpty(url)) {
             throw new NullPointerException("weex page url isn't empty !!!");
         }
+        Uri weexUri = Uri.parse(url);
+        setTitle(weexUri.getQueryParameter("title"));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         options.put(WXSDKInstance.BUNDLE_URL, url);
         mWXSDKInstance.renderByUrl("WxIndex", url, options, null, WXRenderStrategy.APPEND_ASYNC);
     }
