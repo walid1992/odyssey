@@ -25,7 +25,7 @@ let config = {
     tags: [
       {
         name: 'Weex首页',
-        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/home/app.js`)}`
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:8080/dist/weex/views/tweet/app.js`)}`
       },
       {
         name: '原生首页',
@@ -33,7 +33,7 @@ let config = {
       },
       {
         name: '我的',
-        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/mine/app.js`)}`
+        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:8080/dist/weex/views/mine/app.js`)}`
       }
     ]
   },
