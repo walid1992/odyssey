@@ -51,4 +51,4 @@ ios 暂不支持
 # 启动
 
 1. 组装器 node src/serve/index.js
-2. apk下载服务 node src/serve/index.js
+2. apk下载服务 npm run serve
