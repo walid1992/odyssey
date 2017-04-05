@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.0'
-        classpath 'net.wequick.tools.build:gradle-small:1.1.0-alpha2'
+        classpath 'net.wequick.tools.build:gradle-small:1.2.0-beta3'
         // lambda 表达式
         classpath 'me.tatarka:gradle-retrolambda:3.6.0'
     }
@@ -29,7 +29,7 @@ task clean(type: Delete) {
 
 small {
     buildToAssets = false
-    aarVersion = '1.1.0-alpha2'
+    aarVersion = '1.2.0-beta3'
 }
 
 ext {
