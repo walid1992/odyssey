@@ -12,12 +12,10 @@ int layout layout_navigationbar 0x11030004
 int layout widget_common_cell 0x11030005
 int dimen design_navigation_padding_top_default 0x11040000
 int dimen design_fab_content_size 0x11040001
-int style AppTheme 0x11050000
-int style AppTheme_AppBarOverlay 0x11050001
-int style AppTheme_NoActionBar 0x11050002
-int style AppTheme_PopupOverlay 0x11050003
-int style FullscreenActionBarStyle 0x11050004
-int style FullscreenTheme 0x11050005
+int style AppTheme_AppBarOverlay 0x11050000
+int style AppTheme_PopupOverlay 0x11050001
+int style FullscreenActionBarStyle 0x11050002
+int style FullscreenTheme 0x11050003
 int color colorAccent 0x11060000
 int color colorPrimary 0x11060001
 int color colorPrimaryDark 0x11060002
