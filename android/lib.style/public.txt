@@ -2,13 +2,8 @@ int style AppTheme 0x19020000
 int style AppTheme_AppBarOverlay 0x19020001
 int style AppTheme_NoActionBar 0x19020002
 int style AppTheme_PopupOverlay 0x19020003
-int style fade 0x19020004
-int style FullscreenActionBarStyle 0x19020005
-int style FullscreenTheme 0x19020006
+int style FullscreenActionBarStyle 0x19020004
+int style FullscreenTheme 0x19020005
 int color colorAccent 0x19030000
 int color colorPrimary 0x19030001
 int color colorPrimaryDark 0x19030002
-int anim slide_in_left 0x19040000
-int anim slide_in_right 0x19040001
-int anim slide_out_left 0x19040002
-int anim slide_out_right 0x19040003

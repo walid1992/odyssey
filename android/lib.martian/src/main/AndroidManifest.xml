@@ -8,8 +8,8 @@
 
         <activity
             android:name=".ui.web.WebActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
     </application>

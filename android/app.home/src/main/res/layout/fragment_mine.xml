@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="100px"
         app:tabGravity="fill"
-        app:tabIndicatorColor="#1296db"
+        app:tabIndicatorColor="@color/colorPrimary"
         app:tabIndicatorHeight="3dp"
         app:tabMode="fixed"
         app:tabPadding="10px"

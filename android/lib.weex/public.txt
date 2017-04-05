@@ -10,13 +10,8 @@ int style AppTheme_PopupOverlay 0x18050003
 int style CaptureTheme 0x18050004
 int style FullscreenActionBarStyle 0x18050005
 int style FullscreenTheme 0x18050006
-int style fade 0x18050007
 int color colorAccent 0x18060000
 int color colorPrimary 0x18060001
 int color colorPrimaryDark 0x18060002
 int id activity_network 0x18070000
 int id container 0x18070001
-int anim slide_in_left 0x18080000
-int anim slide_in_right 0x18080001
-int anim slide_out_left 0x18080002
-int anim slide_out_right 0x18080003

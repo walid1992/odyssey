@@ -1,1 +1,1 @@
-include ':app', ':app.top', ':app.home', ':app.weex', ':app.detail', ':app.bottom', ':lib.style', ':lib.weex', ':lib.martian'
+include ':app', ':app.top', ':app.home', ':app.weex', ':app.detail', ':app.bottom', ':lib.style', ':lib.weex', ':lib.martian', ':app+stub'
