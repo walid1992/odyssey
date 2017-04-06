@@ -1,6 +1,7 @@
 package com.osmartian.small;
 
 import android.app.Application;
+import android.util.Log;
 
 import net.wequick.small.Small;
 
@@ -19,7 +20,7 @@ public class SmallApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        Log.e("AppTAG", "SmallApp onCreate");
 //         Whether load the bundles from assets or not.
 //         AUTO-SET VALUE.  DO NOT MODIFY.
 //         This value will be automatically set by define:

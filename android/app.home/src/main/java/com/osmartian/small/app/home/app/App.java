@@ -1,6 +1,7 @@
 package com.osmartian.small.app.home.app;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import com.google.gson.GsonBuilder;
 import com.osmartian.small.app.home.constants.AppConstants;
@@ -26,6 +27,7 @@ public class App extends MartianApp {
 
     @Override
     protected void init() {
+        Log.e("AppTAG", "home App onCreate");
         AutoLayoutConifg.getInstance().initConfig(this, 720, 1280);
         initRxJavaRetrofit();
         NavigationbarUtils.sNavigationBarBackgroundColor = Color.parseColor("#1296db");
