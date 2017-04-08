@@ -233,7 +233,7 @@ public class NavigationBar extends ViewGroup implements View.OnClickListener {
     }
 
     /**
-     * Function to set a click listener for Title TextView
+     * Function to set a click register for Title TextView
      *
      * @param listener the onClickListener
      */

@@ -118,22 +118,22 @@ public interface IViewHolder {
     IViewHolder setEnabled(int viewId, boolean enabled);
 
     /**
-     * Sets the on click listener of the iView.
+     * Sets the on click register of the iView.
      */
     IViewHolder setOnClickListener(int viewId, View.OnClickListener listener);
 
     /**
-     * Sets the on touch listener of the iView.
+     * Sets the on touch register of the iView.
      */
     IViewHolder setOnTouchListener(int viewId, View.OnTouchListener listener);
 
     /**
-     * Sets the on long click listener of the iView.
+     * Sets the on long click register of the iView.
      */
     IViewHolder setOnLongClickListener(int viewId, View.OnLongClickListener listener);
 
     /**
-     * Sets the on checked change listener of the iView.
+     * Sets the on checked change register of the iView.
      */
     IViewHolder setOnCheckedChangeListener(int viewId, CompoundButton.OnCheckedChangeListener listener);
 

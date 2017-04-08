@@ -74,7 +74,7 @@ public class RSAUtil {
             out.close();
             return Base64.encodeToString(encryptedData, 0);
         } catch (Exception e) {
-            throw new RuntimeException("rsa encrypt error", e);
+            throw new RuntimeException("rsa encrypt fail", e);
         }
     }
 

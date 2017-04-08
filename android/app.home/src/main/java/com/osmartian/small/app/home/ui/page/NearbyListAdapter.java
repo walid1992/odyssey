@@ -10,6 +10,11 @@ import com.osmartian.small.app.home.R;
 import com.osmartian.small.app.home.bean.business.WebBean;
 import com.osmartian.small.app.home.bean.server.NearbyBean;
 import com.osmartian.small.app.home.ui.adapter.LoadMoreAdapter;
+import com.osmartian.small.appstub.event.EventUtils;
+import com.osmartian.small.appstub.event.GlobalEvent;
+import com.osmartian.small.appstub.event.bean.GlobalBean;
+import com.osmartian.small.appstub.event.bean.Key;
+import com.osmartian.small.appstub.event.bean.Value;
 import com.osmartian.small.lib.martian.ui.web.WebActivity;
 import com.osmartian.small.lib.martian.ui.web.bean.WebConfigVo;
 import com.osmartian.small.lib.martian.utils.JsonUtils;
@@ -17,8 +22,6 @@ import com.osmartian.small.lib.martian.utils.glide.GlideUtils;
 import com.osmartian.small.lib.martian.utils.glide.LoadParams;
 import com.osmartian.small.lib.martian.utils.rxjava.RxBindingUtils;
 import com.osmartian.small.lib.martian.vh.MartianAdapterViewHolder;
-
-import net.wequick.small.Small;
 
 import java.text.DecimalFormat;
 
@@ -45,6 +48,8 @@ class NearbyListAdapter extends LoadMoreAdapter<NearbyBean> {
                 DecimalFormat df = new DecimalFormat("######0.00");
                 setText(R.id.tv_distance, df.format(data.distance) + "km");
                 RxBindingUtils.clicks(aVoid -> {
+                    GlobalEvent.post(new GlobalBean(Key.LOGIN_SUCCESS, new Value(0, "success", "")));
+//                    EventUtils.post(new GlobalBean(Key.LOGIN_SUCCESS, new Value(0, "success", "")));
                     WebBean webBean = new WebBean();
                     webBean.address = data.address;
                     webBean.name = data.name;

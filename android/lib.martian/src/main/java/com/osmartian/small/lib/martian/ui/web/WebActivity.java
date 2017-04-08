@@ -46,7 +46,7 @@ public class WebActivity extends MartianActivity<WebPresenter> implements IWebVi
         webView.setWebViewClient(new MartianWebViewClient() {
             @Override
             public String onPageError(String url) {
-                return "file:///android_asset/error.html";
+                return "file:///android_asset/fail.html";
             }
         });
         webView.loadUrl(getIntent().getStringExtra(WEB_URL));

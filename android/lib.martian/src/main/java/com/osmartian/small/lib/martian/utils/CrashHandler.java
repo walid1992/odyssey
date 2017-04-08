@@ -156,7 +156,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
             trace.close();
             return fileName;
         } catch (Exception e) {
-            Log.e(TAG, "an error occured while writing report file...", e);
+            Log.e(TAG, "an fail occured while writing report file...", e);
         }
         return null;
     }
@@ -228,7 +228,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
                     sendCrashReportsToServer(context);
                 }
             } catch (Exception e) {
-                Log.e(TAG, "SendReports error.", e);
+                Log.e(TAG, "SendReports fail.", e);
             }
         }
 

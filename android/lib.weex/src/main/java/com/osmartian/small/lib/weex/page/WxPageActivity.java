@@ -210,7 +210,7 @@ public class WxPageActivity extends WXBaseActivity implements Handler.Callback, 
             public void onError(WXHttpTask task) {
                 Log.i(TAG, "[http:onError]");
                 mProgressBar.setVisibility(View.GONE);
-                Toast.makeText(getApplicationContext(), "network error!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "network fail!", Toast.LENGTH_SHORT).show();
             }
         };
         WXHttpManager.getInstance().sendRequest(httpTask);
@@ -311,7 +311,7 @@ public class WxPageActivity extends WXBaseActivity implements Handler.Callback, 
                 loadWXfromService(mUri.toString());
                 break;
             case Constants.HOT_REFRESH_CONNECT_ERROR:
-                Toast.makeText(this, "hot refresh connect error!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "hot refresh connect fail!", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

@@ -12,6 +12,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.osmartian.small.app.bottom.bean.TagBean;
+import com.osmartian.small.appstub.event.GlobalEvent;
+import com.osmartian.small.appstub.event.bean.Key;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
@@ -48,7 +50,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         viewPager.setOffscreenPageLimit(3);
+        GlobalEvent.register(this, Key.LOGIN_SUCCESS).then(res -> {
+            bottomBar.getTabAtPosition(0).setTitle("walid");
+        });
+        GlobalEvent.unRegister(this);
+//        EventUtils.register(this);
     }
+
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void globalEvent(GlobalBean globalBean) {
+//
+//    }
 
     protected void bindEvent() {
         bottomBar.getTabAtPosition(0).setTitle(tagBeans[0].name);
