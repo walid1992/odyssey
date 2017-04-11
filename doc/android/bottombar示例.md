@@ -70,6 +70,6 @@
 
 ### 示例图片
 
-<img src="../android/screenshot/bottom-native-home.jpg" width = "300" align=center />
-<img src="../android/screenshot/bottom-weex-home.jpg" width = "300" align=center />
-<img src="../android/screenshot/bottom-mine.jpg" width = "300" align=center />
+<img src="../../android/screenshot/bottom-native-home.jpg" width = "300" align=center />
+<img src="../../android/screenshot/bottom-weex-home.jpg" width = "300" align=center />
+<img src="../../android/screenshot/bottom-mine.jpg" width = "300" align=center />

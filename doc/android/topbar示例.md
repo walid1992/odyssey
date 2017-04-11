@@ -63,6 +63,6 @@
 
 ### 示例图片
 
-<img src="../android/screenshot/top-home.jpg" width = "300" align=center />
-<img src="../android/screenshot/top-launch.jpg" width = "300" align=center />
-<img src="../android/screenshot/top-mine.jpg" width = "300" align=center />
+<img src="../../android/screenshot/top-home.jpg" width = "300" align=center />
+<img src="../../android/screenshot/top-launch.jpg" width = "300" align=center />
+<img src="../../android/screenshot/top-mine.jpg" width = "300" align=center />
