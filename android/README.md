@@ -80,7 +80,13 @@ small-frame
 ├── app (宿主app)
 │      ├── LaunchActivity  
 │      │  
-│      └── SmallApp
+│      └── SmallApp│
+│
+├── app+event (全局event宿主分身) 
+│
+├── app+storage (全局storage宿主分身)
+│      
+├── app+stub (转场动画宿主分身)
 │
 ├── app.top (topbar框架APP)
 │      │ 
@@ -267,147 +273,5 @@ npm run build:android
 
 ## 项目打包APK示例
 
-### 打包topbar框架APK
-
-* config 文件配置
-
-```
-{
-  baseInfo: {
-    applicationId: 'com.syswin.toon.top',
-    versionCode: 2,
-    appIcon: 'top',
-    appName: 'TOP框架',
-    versionName: '1.0.1'
-  },
-  frame: {
-    uri: 'top',
-    tags: [
-      {
-        name: '首页',
-        uri: 'home'
-      },
-      {
-        name: '发起筹款',
-        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/launch/app.js`)}`
-      },
-      {
-        name: '我的',
-        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/mine/app.js`)}`
-      }
-    ]
-  },
-  modules: {
-    version: '1.0.0',
-    bundles: [
-      {
-        uri: 'top',
-        pkg: 'com.osmartian.small.app.top'
-      },
-      {
-        uri: 'home',
-        pkg: 'com.osmartian.small.app.home'
-      },
-      {
-        uri: 'weex',
-        pkg: 'com.osmartian.small.app.weex'
-      },
-      {
-        uri: 'lib.weex',
-        pkg: 'com.osmartian.small.lib.weex'
-      },
-      {
-        uri: 'lib.martian',
-        pkg: 'com.osmartian.small.lib.martian'
-      },
-      {
-        uri: 'lib.style',
-        pkg: 'com.osmartian.small.lib.style'
-      }
-    ]
-  }
-}
-
-```
-
-### 示例图片
-
-<img src="./screenshot/top-home.jpg" width = "300" align=center />
-<img src="./screenshot/top-launch.jpg" width = "300" align=center />
-<img src="./screenshot/top-mine.jpg" width = "300" align=center />
-
-### 打包bottom框架APK
-
-* config 文件配置
-
-```
-{
-  baseInfo: {
-    applicationId: 'com.syswin.toon.bottom',
-    versionCode: 2,
-    appIcon: 'bottom',
-    appName: 'BOTTOM框架',
-    versionName: '1.0.1'
-  },
-  frame: {
-    uri: 'bottom',
-    tags: [
-      {
-        name: 'Weex首页',
-        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/home/app.js`)}`
-      },
-      {
-        name: '原生首页',
-        uri: `home`
-      },
-      {
-        name: '我的',
-        uri: `weex?url=${encodeURIComponent(`http://${ipAddress}:12580/dist/weex/views/mine/app.js`)}`
-      }
-    ]
-  },
-  modules: {
-    version: '1.0.0',
-    bundles: [
-      {
-        uri: 'bottom',
-        pkg: 'com.osmartian.small.app.bottom'
-      },
-      {
-        uri: 'home',
-        pkg: 'com.osmartian.small.app.home'
-      },
-      {
-        uri: 'weex',
-        pkg: 'com.osmartian.small.app.weex'
-      },
-      {
-        uri: 'detail',
-        pkg: 'com.osmartian.small.app.detail',
-        rules: {
-          sub: 'Sub'
-        }
-      },
-      {
-        uri: 'lib.weex',
-        pkg: 'com.osmartian.small.lib.weex'
-      },
-      {
-        uri: 'lib.martian',
-        pkg: 'com.osmartian.small.lib.martian'
-      },
-      {
-        uri: 'lib.style',
-        pkg: 'com.osmartian.small.lib.style'
-      }
-    ]
-  }
-}
-
-```
-
-### 示例图片
-
-<img src="./screenshot/bottom-native-home.jpg" width = "300" align=center />
-<img src="./screenshot/bottom-weex-home.jpg" width = "300" align=center />
-<img src="./screenshot/bottom-mine.jpg" width = "300" align=center />
+1. [top框架](../doc/android/topbar示例.md)
+2. [bottom框架](../doc/android/bottombar示例.md)
