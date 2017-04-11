@@ -4,6 +4,7 @@ package com.osmartian.small.app.weex.app;
 import android.app.Application;
 import android.util.Log;
 
+import com.osmartian.small.app.weex.module.WxGlobalEvent;
 import com.osmartian.small.app.weex.module.WxUserInfoModule;
 import com.osmartian.small.lib.weex.app.WeexLibInstance;
 import com.taobao.weex.WXSDKEngine;
@@ -30,8 +31,10 @@ public class App extends Application {
         try {
             WeexLibInstance.getInstance().init(this);
             WXSDKEngine.registerModule("user", WxUserInfoModule.class);
+            WXSDKEngine.registerModule("sysEvent", WxGlobalEvent.class);
         } catch (WXException e) {
             e.printStackTrace();
         }
     }
+
 }

@@ -52,8 +52,9 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setOffscreenPageLimit(3);
         GlobalEvent.register(this, Key.LOGIN_SUCCESS).then(res -> {
             bottomBar.getTabAtPosition(0).setTitle("walid");
+            return res.getValue().getData();
         });
-        GlobalEvent.unRegister(this);
+//        GlobalEvent.unRegister(this);
 //        EventUtils.register(this);
     }
 
