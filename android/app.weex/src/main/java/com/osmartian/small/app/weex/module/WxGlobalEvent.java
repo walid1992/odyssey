@@ -18,9 +18,7 @@ import com.taobao.weex.common.WXModule;
  */
 public class WxGlobalEvent extends WXModule {
 
-    // 同步操作 uiThread = false
-    // 异步操作 uiThread = true
-    @JSMethod(uiThread = false)
+    @JSMethod(uiThread = true)
     public void post(final JSCallback callback) {
         GlobalEvent.post(new GlobalBean(Key.LOGIN_SUCCESS, new Value(0, "success", "")));
     }
