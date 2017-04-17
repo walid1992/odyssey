@@ -167,6 +167,8 @@ public class Promise<TResolveData, TRejectData> {
 
 ## 使用方式
 
+### android
+
 * register
 
 ```
@@ -185,4 +187,29 @@ GlobalEvent.post(new GlobalBean("LOGIN_SUCCESS", new Value(0, "success", "")));
 
 ```
 GlobalEvent.unRegister(this);
+```
+
+### weex
+
+* register
+
+```
+const sysEvent = weex.requireModule('sysEvent')
+sysEvent.register(data => {
+  console.log('sysEvent', data)
+})
+```
+
+* post
+
+```
+const sysEvent = weex.requireModule('sysEvent')
+sysEvent.post()
+```
+
+* unRegister
+
+```
+const sysEvent = weex.requireModule('sysEvent')
+sysEvent.unRegister()
 ```

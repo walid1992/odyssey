@@ -8,6 +8,7 @@ import com.osmartian.small.app.weex.module.WxGlobalEvent;
 import com.osmartian.small.app.weex.module.WxUserInfoModule;
 import com.osmartian.small.lib.weex.app.WeexLibInstance;
 import com.taobao.weex.WXSDKEngine;
+import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXException;
 
 /**
@@ -32,6 +33,7 @@ public class App extends Application {
             WeexLibInstance.getInstance().init(this);
             WXSDKEngine.registerModule("user", WxUserInfoModule.class);
             WXSDKEngine.registerModule("sysEvent", WxGlobalEvent.class);
+            WXSDKInstance.
         } catch (WXException e) {
             e.printStackTrace();
         }

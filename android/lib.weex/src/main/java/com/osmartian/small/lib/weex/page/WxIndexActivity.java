@@ -35,6 +35,7 @@ public class WxIndexActivity extends WXBaseActivity {
         mContainer = (FrameLayout) findViewById(R.id.container);
         mWXSDKInstance = new WXSDKInstance(this);
         mWXSDKInstance.registerRenderListener(this);
+        mWXSDKInstance.fireGlobalEventCallback();
         Map<String, Object> options = new HashMap<>();
         Uri uri = Small.getUri(this);
         String page = Constants.DefaultPage;

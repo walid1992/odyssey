@@ -25,7 +25,7 @@ public class WxGlobalEvent extends WXModule {
 
     @JSMethod(uiThread = false)
     public void register(@Nullable final JSCallback callback) {
-        GlobalEvent.register(this, Key.LOGIN_SUCCESS).then(res -> {
+        GlobalEvent.register(callback, Key.LOGIN_SUCCESS).then(res -> {
             if (callback != null) {
                 callback.invoke(JSON.toJSONString(res));
             }

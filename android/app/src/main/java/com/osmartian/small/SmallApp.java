@@ -20,6 +20,7 @@ public class SmallApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        getApplicationContext().getApplicationInfo().hashCode()
         Log.e("AppTAG", "SmallApp onCreate");
 //         Whether load the bundles from assets or not.
 //         AUTO-SET VALUE.  DO NOT MODIFY.

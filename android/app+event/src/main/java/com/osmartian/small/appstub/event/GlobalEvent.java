@@ -6,9 +6,7 @@ import com.osmartian.small.appstub.event.bean.GlobalBean;
 import com.osmartian.small.appstub.event.bean.Key;
 import com.osmartian.small.appstub.event.promise.Promise;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,24 +18,26 @@ import java.util.Set;
 
 public class GlobalEvent {
 
-    private Map<Object, SparseArray<List<Promise<GlobalBean, String>>>> listenerMap = new HashMap<>();
+    // key:Object value：<key:Integer value:Promise>
+    private Map<Object, SparseArray<Promise<GlobalBean, String>>> listenerMap = new HashMap<>();
 
     private GlobalEvent() {
-//        EventUtils.register(this);
     }
 
     private static class SingletonHolder {
         static GlobalEvent instance = new GlobalEvent();
     }
 
+    public static void initWeexCall() {
+
+    }
+
     public static Promise<GlobalBean, String> register(Object o, @Key int key) {
-        Map<Object, SparseArray<List<Promise<GlobalBean, String>>>> listenerMap = SingletonHolder.instance.listenerMap;
-        SparseArray<List<Promise<GlobalBean, String>>> sparseArray = listenerMap.get(o) != null ? listenerMap.get(o) : new SparseArray<>();
-        List<Promise<GlobalBean, String>> promises = sparseArray.get(key) != null ? sparseArray.get(key) : new ArrayList<>();
+        Map<Object, SparseArray<Promise<GlobalBean, String>>> listenerMap = SingletonHolder.instance.listenerMap;
+        SparseArray<Promise<GlobalBean, String>> sparseArray = listenerMap.get(o) != null ? listenerMap.get(o) : new SparseArray<>();
         Promise<GlobalBean, String> promise = new Promise<>((resolve, reject) -> {
         });
-        promises.add(promise);
-        sparseArray.put(key, promises);
+        sparseArray.put(key, promise);
         listenerMap.put(o, sparseArray);
         return promise;
     }
@@ -48,28 +48,13 @@ public class GlobalEvent {
 
     public static void post(GlobalBean globalBean) {
         GlobalEvent globalEvent = SingletonHolder.instance;
-        Set<Map.Entry<Object, SparseArray<List<Promise<GlobalBean, String>>>>> entrySet = globalEvent.listenerMap.entrySet();
-        for (Map.Entry<Object, SparseArray<List<Promise<GlobalBean, String>>>> entry : entrySet) {
-            List<Promise<GlobalBean, String>> promiseList = entry.getValue().get(globalBean.getKey());
-            if (promiseList != null) {
-                for (Promise<GlobalBean, String> item : promiseList) {
-                    item.resolve.run(globalBean);
-                }
+        Set<Map.Entry<Object, SparseArray<Promise<GlobalBean, String>>>> entrySet = globalEvent.listenerMap.entrySet();
+        for (Map.Entry<Object, SparseArray<Promise<GlobalBean, String>>> entry : entrySet) {
+            Promise<GlobalBean, String> promise = entry.getValue().get(globalBean.getKey());
+            if (promise != null) {
+                promise.resolve.run(globalBean);
             }
         }
     }
-
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void globalEvent(GlobalBean globalBean) {
-//        Set<Map.Entry<Object, SparseArray<List<Promise<GlobalBean, String>>>>> entrySet = listenerMap.entrySet();
-//        for (Map.Entry<Object, SparseArray<List<Promise<GlobalBean, String>>>> entry : entrySet) {
-//            List<Promise<GlobalBean, String>> promiseList = entry.getValue().get(globalBean.getKey());
-//            if (promiseList != null) {
-//                for (Promise<GlobalBean, String> item : promiseList) {
-//                    item.resolve.run(globalBean);
-//                }
-//            }
-//        }
-//    }
 
 }
