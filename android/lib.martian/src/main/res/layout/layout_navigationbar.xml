@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.osmartian.small.lib.martian.ui.widget.navigationbar.NavigationBar
+<com.syswin.toon.lib.martian.ui.widget.navigationbar.NavigationBar
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/navigationbar"
     android:layout_width="match_parent"

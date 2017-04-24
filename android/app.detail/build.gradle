@@ -7,7 +7,7 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 25
-        applicationId 'com.osmartian.small.app.detail'
+        applicationId 'com.syswin.toon.app.detail'
         versionCode 1
         versionName "1.0"
     }

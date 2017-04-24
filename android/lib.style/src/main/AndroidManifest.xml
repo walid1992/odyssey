@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.osmartian.small.lib.style">
+    package="com.syswin.toon.lib.style">
 
     <application
         android:allowBackup="true"

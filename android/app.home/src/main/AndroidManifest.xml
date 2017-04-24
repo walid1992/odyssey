@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.osmartian.small.app.home">
+    package="com.syswin.toon.app.home">
 
     <application
         android:name=".app.App"

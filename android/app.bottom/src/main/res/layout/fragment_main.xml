@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30px"
-    tools:context=".MainActivity$PlaceholderFragment">
+    tools:context="com.syswin.toon.app.bottom.MainActivity$PlaceholderFragment">
 
     <TextView
         android:id="@+id/section_label"

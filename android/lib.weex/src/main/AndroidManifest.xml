@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.osmartian.small.lib.weex">
+    package="com.syswin.toon.lib.weex">
 
     <application
         android:allowBackup="true"
@@ -7,12 +7,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".page.WxIndexActivity">
+        <activity android:name="com.syswin.toon.lib.weex.page.WxIndexActivity">
 
         </activity>
 
         <activity
-            android:name=".page.WxPageActivity"
+            android:name="com.syswin.toon.lib.weex.page.WxPageActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>

@@ -6,7 +6,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.osmartian.small.app.bottom"
+        applicationId "com.syswin.toon.app.bottom"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
